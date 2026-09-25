@@ -1,22 +1,30 @@
 extends Node2D
 
+const VEGTABLES = preload("uid://dd47p8tm22bqt")
+
 @onready var stump = $Stump
 @onready var stone = $Stone
 @onready var large_log = $Log
 
-var veg = false
+var vegtable = false
 
-func _ready():
+func _spawn():
+	GlobalScript.lost.connect(_hit)
+	
 	position += Vector2(randf_range(-25,25), randf_range(-25,25))
 	
-	if !veg:
+	if !vegtable:
 		_obstacle()
 	else:
 		_vegtable()
 
 
 func _vegtable():
-	pass
+	for i in get_children():
+		i.queue_free()
+	
+	var veg = VEGTABLES.instantiate()
+	add_child(veg)
 func _obstacle():
 	var obstacle = randi_range(0, 13)
 	if obstacle <= 5:

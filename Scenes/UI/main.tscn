@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dl6qhcx58bdfy"]
+
+[ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_otj8o"]
+[ext_resource type="Script" uid="uid://bpya7qpafuoi4" path="res://Code/UI/notepad.gd" id="2_37xw0"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NotePad" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 153.0
+offset_bottom = 138.0
+texture = ExtResource("1_otj8o")
+
+[node name="Icons" type="VBoxContainer" parent="NotePad"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_37xw0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NotePad/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="NotePad/Icons/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="NotePad/Icons/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="NotePad/Icons/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NotePad/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="NotePad/Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="NotePad/Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="NotePad/Icons/HBoxContainer2"]
+layout_mode = 2

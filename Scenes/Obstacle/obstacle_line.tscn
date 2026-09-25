@@ -7,9 +7,7 @@
 script = ExtResource("1_qn8oy")
 
 [node name="ObstacleMain" parent="." instance=ExtResource("2_f5oxo")]
-position = Vector2(0, -128)
+position = Vector2(0, -72)
 
 [node name="ObstacleMain2" parent="." instance=ExtResource("2_f5oxo")]
-
-[node name="ObstacleMain3" parent="." instance=ExtResource("2_f5oxo")]
-position = Vector2(0, 128)
+position = Vector2(0, 72)

@@ -10,11 +10,19 @@ var current_direction = Direction.FORWARDS
 var speed_up = Vector2.ZERO
 var input_direction = Vector2.ZERO
 
+var moving = false
+
+func _ready():
+	GlobalScript.start.connect(_start_driving)
+	GlobalScript.stop.connect(_stop_driving)
+	GlobalScript.lost.connect(_stop_driving)
+
 func _physics_process(_delta):
 	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
 	
-	_movement()
-	_turning()
+	if moving:
+		_movement()
+		_turning()
 	
 	move_and_slide()
 
@@ -50,9 +58,6 @@ func _movement():
 		speed_up.y = 0
 		velocity.y  *= 0.9
 func _turning():
-	
-	print(input_direction)
-	
 	if input_direction.y < 0 and input_direction.x >= 0:
 		current_direction = Direction.UPWARDS
 	elif input_direction.y < 0 and input_direction.x < 0:
@@ -92,5 +97,13 @@ func _turning():
 		$"DownwardHitArea".position.y = 0
 
 func _on_hit_area_body_entered(body):
-	body.hit()
-	queue_free()
+	body.get_parent()._hit()
+	_lose()
+
+func _lose():
+	GlobalScript.lost.emit()
+
+func _start_driving():
+	moving = true
+func _stop_driving():
+	moving = false

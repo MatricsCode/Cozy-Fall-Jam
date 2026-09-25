@@ -1,8 +1,44 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd47p8tm22bqt"]
+[gd_scene load_steps=20 format=3 uid="uid://dd47p8tm22bqt"]
 
+[ext_resource type="Script" uid="uid://ikfjref3725r" path="res://Code/Obstacles/vegtables.gd" id="1_1knkv"]
+[ext_resource type="Texture2D" uid="uid://bp76eorkbs2w5" path="res://Art/Juice/Smoke1.png" id="1_bwqrh"]
 [ext_resource type="Texture2D" uid="uid://dmvx6cvvsaye" path="res://Art/Veggies/Beetroot.png" id="1_msa66"]
+[ext_resource type="Texture2D" uid="uid://ct5ll8xxmts4v" path="res://Art/Juice/Smoke2.png" id="2_1knkv"]
 [ext_resource type="Texture2D" uid="uid://c2ddlrjidrthx" path="res://Art/Veggies/Carrot.png" id="2_2x6i6"]
 [ext_resource type="Texture2D" uid="uid://c1rf14kd4e0ue" path="res://Art/Veggies/Potato.png" id="3_5j216"]
+[ext_resource type="Texture2D" uid="uid://b0boxyi4pkhgo" path="res://Art/Juice/Smoke3.png" id="3_iwlht"]
+
+[sub_resource type="Curve" id="Curve_nrjil"]
+_data = [Vector2(0, 0.6966293), 0.0, 0.0, 0, 0, Vector2(0.6136364, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.6314609, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bwqrh"]
+curve = SubResource("Curve_nrjil")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tundf"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 64.0
+initial_velocity_max = 128.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_bwqrh")
+color = Color(1, 1, 0.08627451, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f1d5e"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 5)
+emission_shape = 1
+emission_sphere_radius = 8.32
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_bwqrh")
+color = Color(1, 1, 0.08627451, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwqrh"]
 atlas = ExtResource("1_msa66")
@@ -38,7 +74,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_1knkv")
 }],
 "loop": true,
-"name": &"Beetroot",
+"name": &"1",
 "speed": 5.0
 }, {
 "frames": [{
@@ -49,7 +85,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nrjil")
 }],
 "loop": true,
-"name": &"Carrot",
+"name": &"2",
 "speed": 5.0
 }, {
 "frames": [{
@@ -60,25 +96,50 @@ animations = [{
 "texture": SubResource("AtlasTexture_tundf")
 }],
 "loop": true,
-"name": &"Potato",
+"name": &"3",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_msa66"]
-radius = 28.442924
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1knkv"]
+size = Vector2(48, 54)
 
-[node name="Node2D" type="StaticBody2D"]
-collision_layer = 4
-collision_mask = 0
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1knkv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+texture = ExtResource("1_bwqrh")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.72
+process_material = SubResource("ParticleProcessMaterial_tundf")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+texture = ExtResource("2_1knkv")
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.72
+process_material = SubResource("ParticleProcessMaterial_tundf")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+amount = 16
+texture = ExtResource("3_iwlht")
+process_material = SubResource("ParticleProcessMaterial_f1d5e")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1d5e")
-animation = &"Beetroot"
+animation = &"3"
+frame_progress = 0.642762
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 16)
-shape = SubResource("CircleShape2D_msa66")
+shape = SubResource("RectangleShape2D_1knkv")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

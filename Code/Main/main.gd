@@ -1,15 +1,22 @@
 extends Node2D
 
 const OBSTACLE_LINE = preload("uid://cbyfk238wg2yl")
+
 @onready var spawn_timer = $SpawnTimer
 
 func _ready():
-	spawn_timer.wait_time = randf_range(0.5, 2.5)
+	GlobalScript.start.connect(_start)
+	GlobalScript.lost.connect(_stop)
+
+func _stop():
+	spawn_timer.stop()
+func _start():
+	spawn_timer.wait_time = randf_range(0.5, 3)
 	spawn_timer.start()
-	_spawn()
+
 
 func _on_timer_timeout():
-	spawn_timer.wait_time = randf_range(0.5, 2.5)
+	spawn_timer.wait_time = randf_range(0.5, 3)
 	spawn_timer.start()
 	_spawn()
 
