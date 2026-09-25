@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbwn8mr8x8nkx"]
+
+[ext_resource type="Script" uid="uid://bvptunygqq10a" path="res://Code/GlobalScript/global_script.gd" id="1_boe17"]
+
+[node name="GlobalScript" type="Node"]
+script = ExtResource("1_boe17")
