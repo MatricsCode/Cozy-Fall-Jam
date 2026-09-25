@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 @onready var stump = $Stump
 @onready var stone = $Stone

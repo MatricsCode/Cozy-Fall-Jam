@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://dd47p8tm22bqt"]
+
+[ext_resource type="Texture2D" uid="uid://dmvx6cvvsaye" path="res://Art/Veggies/Beetroot.png" id="1_msa66"]
+[ext_resource type="Texture2D" uid="uid://c2ddlrjidrthx" path="res://Art/Veggies/Carrot.png" id="2_2x6i6"]
+[ext_resource type="Texture2D" uid="uid://c1rf14kd4e0ue" path="res://Art/Veggies/Potato.png" id="3_5j216"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwqrh"]
+atlas = ExtResource("1_msa66")
+region = Rect2(0, 0, 80, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1knkv"]
+atlas = ExtResource("1_msa66")
+region = Rect2(80, 0, 80, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwlht"]
+atlas = ExtResource("2_2x6i6")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrjil"]
+atlas = ExtResource("2_2x6i6")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3041j"]
+atlas = ExtResource("3_5j216")
+region = Rect2(0, 0, 80, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tundf"]
+atlas = ExtResource("3_5j216")
+region = Rect2(80, 0, 80, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f1d5e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwqrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1knkv")
+}],
+"loop": true,
+"name": &"Beetroot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwlht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrjil")
+}],
+"loop": true,
+"name": &"Carrot",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3041j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tundf")
+}],
+"loop": true,
+"name": &"Potato",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_msa66"]
+radius = 28.442924
+
+[node name="Node2D" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f1d5e")
+animation = &"Beetroot"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 16)
+shape = SubResource("CircleShape2D_msa66")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
