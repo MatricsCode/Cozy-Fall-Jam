@@ -1,7 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://2wbjquktqfgh"]
+[gd_scene load_steps=12 format=3 uid="uid://2wbjquktqfgh"]
 
 [ext_resource type="Script" uid="uid://djtleh5qvgkbx" path="res://Code/Car/Main.gd" id="1_fnsqd"]
 [ext_resource type="Texture2D" uid="uid://3asoff1a0433" path="res://Art/Truck/Truck.png" id="2_6tdsx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asnge"]
+atlas = ExtResource("2_6tdsx")
+region = Rect2(0, 192, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kj2ht"]
+atlas = ExtResource("2_6tdsx")
+region = Rect2(144, 192, 144, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a0hww"]
 atlas = ExtResource("2_6tdsx")
@@ -11,8 +19,27 @@ region = Rect2(0, 0, 144, 96)
 atlas = ExtResource("2_6tdsx")
 region = Rect2(144, 0, 144, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tdsx"]
+atlas = ExtResource("2_6tdsx")
+region = Rect2(0, 96, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfrl7"]
+atlas = ExtResource("2_6tdsx")
+region = Rect2(144, 96, 144, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_dfrl7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asnge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kj2ht")
+}],
+"loop": true,
+"name": &"downwards",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a0hww")
@@ -21,39 +48,80 @@ animations = [{
 "texture": SubResource("AtlasTexture_sbu84")
 }],
 "loop": true,
-"name": &"default",
+"name": &"forwards",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"down",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tdsx")
 }, {
-"frames": [],
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfrl7")
+}],
 "loop": true,
-"name": &"up",
+"name": &"upwards",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2sn2"]
-size = Vector2(108, 47.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tdsx"]
+size = Vector2(104, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsqd"]
-size = Vector2(7, 45)
+size = Vector2(7, 48)
 
 [node name="Car" type="CharacterBody2D"]
 script = ExtResource("1_fnsqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dfrl7")
-autoplay = "default"
+animation = &"upwards"
+autoplay = "forwards"
+frame_progress = 0.27252737
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-10, 7.75)
-shape = SubResource("RectangleShape2D_t2sn2")
+[node name="Forwards" type="StaticBody2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Forwards"]
+position = Vector2(-4, 8)
+shape = SubResource("RectangleShape2D_6tdsx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(48.5, 7)
+[node name="HitArea" type="Area2D" parent="Forwards"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Forwards/HitArea"]
+position = Vector2(52.5, 8)
 shape = SubResource("RectangleShape2D_fnsqd")
+
+[node name="Downwards" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Downwards"]
+position = Vector2(-4, 8)
+rotation = 0.34906584
+shape = SubResource("RectangleShape2D_6tdsx")
+
+[node name="HitArea" type="Area2D" parent="Downwards"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Downwards/HitArea"]
+position = Vector2(49.000004, 27)
+rotation = 0.34906584
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_fnsqd")
+
+[node name="Upwards" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Upwards"]
+position = Vector2(-4, 8)
+rotation = -0.34906584
+shape = SubResource("RectangleShape2D_6tdsx")
+
+[node name="HitArea" type="Area2D" parent="Upwards"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Upwards/HitArea"]
+position = Vector2(49.000004, -11.999998)
+rotation = -0.34906584
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_fnsqd")
+
+[connection signal="body_entered" from="Forwards/HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_entered" from="Downwards/HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_entered" from="Upwards/HitArea" to="." method="_on_hit_area_body_entered"]
