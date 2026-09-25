@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c44kyeqkiosaf" path="res://Art/Obstacles/Stump1.png" id="1_qycq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oetnl"]
-size = Vector2(62, 16)
+size = Vector2(32, 206)
 
 [node name="Stump" type="StaticBody2D"]
 
