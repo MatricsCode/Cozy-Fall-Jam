@@ -13,6 +13,8 @@ var speed_up = Vector2.ZERO
 var input_direction = Vector2.ZERO
 
 func _physics_process(delta):
+	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
+	
 	_movement()
 	_turning()
 	
@@ -50,20 +52,41 @@ func _movement():
 		speed_up.y = 0
 		velocity.y  *= 0.9
 func _turning():
-	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
 	
-	print()
+	print(input_direction)
+	
+	if input_direction.y < 0 and input_direction.x >= 0:
+		current_direction = Direction.UPWARDS
+	elif input_direction.y < 0 and input_direction.x < 0:
+		current_direction = Direction.DOWNWARDS
+	
+	if input_direction.y > 0 and input_direction.x >= 0:
+		current_direction = Direction.DOWNWARDS
+	elif input_direction.y > 0 and input_direction.x < 0:
+		current_direction = Direction.UPWARDS
 	
 	if input_direction.y == 0:
 		current_direction = Direction.FORWARDS
-	elif input_direction.y == 1 and input_direction.x != -1:
-		current_direction = Direction.DOWNWARDS
-	elif input_direction.y == 1 and input_direction.x == -1:
-		current_direction = Direction.UPWARDS
-	elif input_direction.y == -1 and input_direction.x != 1:
-		current_direction = Direction.UPWARDS
-	elif input_direction.y == -1 and input_direction.x == 1:
-		current_direction = Direction.DOWNWARDS
+	
+	
+		#if velocity.y == 0 and input_direction.x == 0:
+		#current_direction = Direction.FORWARDS
+	#elif input_direction.y == 1 and input_direction.x == 0:
+		#current_direction = Direction.DOWNWARDS
+	#elif input_direction.y == -1 and input_direction.x == 0:
+		#current_direction = Direction.UPWARDS
+	#
+	#if input_direction.y == 1 and input_direction.x == -1:
+		#current_direction = Direction.DOWNWARDS
+	#elif input_direction.y == 1 and input_direction.x == 0:
+		#current_direction = Direction.DOWNWARDS
+	#elif input_direction.y == 1 and input_direction.x == -1:
+		#current_direction = Direction.UPWARDS
+	##
+	##if input_direction.y == -1 and input_direction.x != 1:
+		##current_direction = Direction.UPWARDS
+	##elif input_direction.y == -1 and input_direction.x == 1:
+		##current_direction = Direction.DOWNWARDS
 	
 	#
 	#match input_direction:

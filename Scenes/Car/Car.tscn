@@ -76,7 +76,7 @@ script = ExtResource("1_fnsqd")
 sprite_frames = SubResource("SpriteFrames_dfrl7")
 animation = &"forwards"
 autoplay = "forwards"
-frame_progress = 0.53123647
+frame_progress = 0.61137474
 
 [node name="Forwards" type="StaticBody2D" parent="."]
 
@@ -93,7 +93,6 @@ position = Vector2(52.5, 8)
 shape = SubResource("RectangleShape2D_fnsqd")
 
 [node name="Downwards" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Downwards"]
 position = Vector2(-4, 8)
@@ -111,7 +110,6 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_fnsqd")
 
 [node name="Upwards" type="StaticBody2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Upwards"]
 position = Vector2(-4, 8)
