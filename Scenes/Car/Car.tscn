@@ -1,7 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://2wbjquktqfgh"]
+[gd_scene load_steps=8 format=3 uid="uid://2wbjquktqfgh"]
 
 [ext_resource type="Script" uid="uid://djtleh5qvgkbx" path="res://Code/Car/Main.gd" id="1_fnsqd"]
-[ext_resource type="Texture2D" uid="uid://bukfm6wx5hvp0" path="res://Sprites/Car.png" id="2_6tdsx"]
+[ext_resource type="Texture2D" uid="uid://3asoff1a0433" path="res://Art/Truck/Truck.png" id="2_6tdsx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0hww"]
+atlas = ExtResource("2_6tdsx")
+region = Rect2(0, 0, 144, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sbu84"]
+atlas = ExtResource("2_6tdsx")
+region = Rect2(144, 0, 144, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dfrl7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0hww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sbu84")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2sn2"]
 size = Vector2(108, 47.5)
@@ -12,8 +34,9 @@ size = Vector2(7, 45)
 [node name="Car" type="CharacterBody2D"]
 script = ExtResource("1_fnsqd")
 
-[node name="Car" type="Sprite2D" parent="."]
-texture = ExtResource("2_6tdsx")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dfrl7")
+frame_progress = 0.14778762
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-10, 7.75)
