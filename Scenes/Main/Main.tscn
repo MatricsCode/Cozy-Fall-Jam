@@ -1,12 +1,15 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2toq2ab6un2n"]
 
+[ext_resource type="Script" uid="uid://b2hgu73umbhn8" path="res://Code/Main/main.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://2wbjquktqfgh" path="res://Scenes/Car/Car.tscn" id="1_p8rbg"]
-[ext_resource type="PackedScene" uid="uid://cbyfk238wg2yl" path="res://Scenes/Obstacle/obstacle_line.tscn" id="2_qtv3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
 size = Vector2(540, 20)
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_cmk6n")
+
+[node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -32,5 +35,4 @@ position = Vector2(280, 0)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_p8rbg")
 
-[node name="ObstacleLine" parent="." instance=ExtResource("2_qtv3y")]
-position = Vector2(152, -89)
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

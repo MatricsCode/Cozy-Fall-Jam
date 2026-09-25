@@ -70,6 +70,7 @@ size = Vector2(104, 48)
 size = Vector2(7, 48)
 
 [node name="Car" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_fnsqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -78,54 +79,50 @@ animation = &"forwards"
 autoplay = "forwards"
 frame_progress = 0.61137474
 
-[node name="Forwards" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Forwards"]
+[node name="ForwardCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 8)
 shape = SubResource("RectangleShape2D_6tdsx")
 
-[node name="HitArea" type="Area2D" parent="Forwards"]
+[node name="ForwardHitArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Forwards/HitArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ForwardHitArea"]
 position = Vector2(52.5, 8)
 shape = SubResource("RectangleShape2D_fnsqd")
 
-[node name="Downwards" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Downwards"]
-position = Vector2(-4, 8)
-rotation = 0.34906584
-shape = SubResource("RectangleShape2D_6tdsx")
-
-[node name="HitArea" type="Area2D" parent="Downwards"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Downwards/HitArea"]
-position = Vector2(49.000004, 27)
-rotation = 0.34906584
-scale = Vector2(0.99999994, 0.99999994)
-shape = SubResource("RectangleShape2D_fnsqd")
-
-[node name="Upwards" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Upwards"]
+[node name="UpwardCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 8)
 rotation = -0.34906584
+scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_6tdsx")
 
-[node name="HitArea" type="Area2D" parent="Upwards"]
+[node name="UpwardHitArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upwards/HitArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpwardHitArea"]
 position = Vector2(49.000004, -11.999998)
 rotation = -0.34906584
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_fnsqd")
 
-[connection signal="body_entered" from="Forwards/HitArea" to="." method="_on_hit_area_body_entered"]
-[connection signal="body_entered" from="Downwards/HitArea" to="." method="_on_hit_area_body_entered"]
-[connection signal="body_entered" from="Upwards/HitArea" to="." method="_on_hit_area_body_entered"]
+[node name="DownwardCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 8)
+rotation = 0.34906584
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_6tdsx")
+
+[node name="DownwardHitArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownwardHitArea"]
+position = Vector2(49.000004, 27)
+rotation = 0.34906584
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_fnsqd")
+
+[connection signal="body_entered" from="ForwardHitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_entered" from="UpwardHitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_entered" from="DownwardHitArea" to="." method="_on_hit_area_body_entered"]

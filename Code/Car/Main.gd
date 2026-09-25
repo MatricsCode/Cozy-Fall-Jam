@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
-@onready var forwards = $Forwards
-@onready var downwards = $Downwards
-@onready var upwards = $Upwards
+
 
 enum Direction {FORWARDS, UPWARDS, DOWNWARDS}
 
@@ -12,7 +10,7 @@ var current_direction = Direction.FORWARDS
 var speed_up = Vector2.ZERO
 var input_direction = Vector2.ZERO
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
 	
 	_movement()
@@ -67,63 +65,32 @@ func _turning():
 	
 	if input_direction.y == 0:
 		current_direction = Direction.FORWARDS
-	
-	
-		#if velocity.y == 0 and input_direction.x == 0:
-		#current_direction = Direction.FORWARDS
-	#elif input_direction.y == 1 and input_direction.x == 0:
-		#current_direction = Direction.DOWNWARDS
-	#elif input_direction.y == -1 and input_direction.x == 0:
-		#current_direction = Direction.UPWARDS
-	#
-	#if input_direction.y == 1 and input_direction.x == -1:
-		#current_direction = Direction.DOWNWARDS
-	#elif input_direction.y == 1 and input_direction.x == 0:
-		#current_direction = Direction.DOWNWARDS
-	#elif input_direction.y == 1 and input_direction.x == -1:
-		#current_direction = Direction.UPWARDS
-	##
-	##if input_direction.y == -1 and input_direction.x != 1:
-		##current_direction = Direction.UPWARDS
-	##elif input_direction.y == -1 and input_direction.x == 1:
-		##current_direction = Direction.DOWNWARDS
-	
-	#
-	#match input_direction:
-		#Vector2(0,0):
-			#current_direction = Direction.FORWARDS
-		#Vector2(1,0):
-			#current_direction = Direction.FORWARDS
-		#Vector2(-1,0):
-			#current_direction = Direction.FORWARDS
-		#Vector2(0,1):
-			#current_direction = Direction.DOWNWARDS
-		#Vector2(1,1):
-			#current_direction = Direction.DOWNWARDS
-		#Vector2(-1,1):
-			#current_direction = Direction.UPWARDS
-		#Vector2(0,-1):
-			#current_direction = Direction.UPWARDS
-		#Vector2(1,-1):
-			#current_direction = Direction.UPWARDS
-		#Vector2(-1,-1):
-			#current_direction = Direction.DOWNWARDS
-	
+
 	if current_direction == Direction.FORWARDS:
 		sprite.play("forwards")
-		forwards.position.y = 0
-		downwards.position.y = 1000000
-		upwards.position.y = 10000
+		$"ForwardCollision".position.y = 0
+		$"ForwardHitArea".position.y  = 0
+		$"UpwardCollision".position.y = 10000
+		$"UpwardHitArea".position.y = 10000
+		$"DownwardCollision".position.y = 10000 
+		$"DownwardHitArea".position.y = 10000
 	elif current_direction == Direction.DOWNWARDS:
 		sprite.play("downwards")
-		forwards.position.y = 1000000
-		downwards.position.y = 0
-		upwards.position.y = 10000
+		$"ForwardCollision".position.y = 10000
+		$"ForwardHitArea".position.y  = 10000
+		$"UpwardCollision".position.y = 0
+		$"UpwardHitArea".position.y = 0
+		$"DownwardCollision".position.y = 10000 
+		$"DownwardHitArea".position.y = 10000
 	elif current_direction == Direction.UPWARDS:
 		sprite.play("upwards")
-		forwards.position.y = 1000000
-		downwards.position.y = 10000
-		upwards.position.y = 0
+		$"ForwardCollision".position.y = 10000
+		$"ForwardHitArea".position.y  = 10000
+		$"UpwardCollision".position.y = 10000
+		$"UpwardHitArea".position.y = 10000
+		$"DownwardCollision".position.y = 0
+		$"DownwardHitArea".position.y = 0
 
 func _on_hit_area_body_entered(body):
+	body.hit()
 	queue_free()
