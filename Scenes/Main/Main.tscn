@@ -1,9 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2toq2ab6un2n"]
+[gd_scene load_steps=3 format=3 uid="uid://c2toq2ab6un2n"]
 
 [ext_resource type="PackedScene" uid="uid://2wbjquktqfgh" path="res://Scenes/Car/Car.tscn" id="1_p8rbg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
+size = Vector2(323, 20)
 
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Car" parent="." instance=ExtResource("1_p8rbg")]
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 88)
+shape = SubResource("RectangleShape2D_p8rbg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, -88)
+shape = SubResource("RectangleShape2D_p8rbg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-160, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_p8rbg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(160, 0)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_p8rbg")
