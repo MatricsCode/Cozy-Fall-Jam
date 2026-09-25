@@ -70,6 +70,7 @@ size = Vector2(104, 48)
 size = Vector2(7, 48)
 
 [node name="Car" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_fnsqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

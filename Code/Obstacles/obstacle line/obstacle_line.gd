@@ -7,10 +7,12 @@ func _ready():
 	var count = 0
 	var last_position = 0
 	
-	while count < randi_range(3, 7):
+	while count < randi_range(1, 5):
 		count += 1
 		var obstacle = OBSTACLE_MAIN.instantiate()
-		last_position += randi_range(25, 150)
+		last_position += randi_range(75, 150)
 		obstacle.position.y = last_position
 		add_child(obstacle)
-		
+
+func _physics_process(_delta):
+	position.x -= GlobalScript.current_speed
