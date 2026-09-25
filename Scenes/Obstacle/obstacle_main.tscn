@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bly3j20mkirc"]
+
+[ext_resource type="Script" uid="uid://d052uqwvkabt8" path="res://Code/Obstacles/obstacle_main.gd" id="1_3oqjh"]
+[ext_resource type="PackedScene" uid="uid://ngs8fr7iw0h5" path="res://Scenes/Obstacle/stump.tscn" id="2_gkv08"]
+
+[node name="ObstacleMain" type="StaticBody2D"]
+script = ExtResource("1_3oqjh")
+
+[node name="Stump" parent="." instance=ExtResource("2_gkv08")]
+visible = false
