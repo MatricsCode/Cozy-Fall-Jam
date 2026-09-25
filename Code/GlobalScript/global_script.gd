@@ -1,3 +1,3 @@
 extends Node
 
-var current_direction_inputed = Vector2.ZERO
+var input_direction = Vector2.ZERO
