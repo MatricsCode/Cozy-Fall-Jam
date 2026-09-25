@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://2wbjquktqfgh" path="res://Scenes/Car/Car.tscn" id="1_p8rbg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
-size = Vector2(323, 20)
+size = Vector2(540, 20)
 
 [node name="Main" type="Node2D"]
 
@@ -14,19 +14,19 @@ size = Vector2(323, 20)
 [node name="Walls" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, 88)
+position = Vector2(0, 141)
 shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(0, -88)
+position = Vector2(0, -141)
 shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-160, 0)
+position = Vector2(-280, 0)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
-position = Vector2(160, 0)
+position = Vector2(280, 0)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_p8rbg")
