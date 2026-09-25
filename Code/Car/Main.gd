@@ -13,15 +13,12 @@ var speed_up = Vector2.ZERO
 var input_direction = Vector2.ZERO
 
 func _physics_process(delta):
-	
 	_movement()
 	_turning()
 	
 	move_and_slide()
 
 func _movement():
-	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
-	
 	if input_direction.x != 0:
 		velocity.x = input_direction.x * 100 * speed_up.x
 		speed_up.x += 0.1
@@ -41,10 +38,6 @@ func _movement():
 		speed_up.y += 0.1
 		speed_up.y = clamp(speed_up.y, 0, 2)
 		
-		if input_direction.y == -1:
-			current_direction = Direction.UPWARDS
-		else:
-			current_direction = Direction.DOWNWARDS
 	else:
 		#var slowdown = get_tree().create_tween()
 		#slowdown.tween_property(self, "velocity", Vector2(velocity.x, 0), 0.05)
@@ -53,12 +46,46 @@ func _movement():
 		#var slowdown = get_tree().create_tween()
 		#slowdown.tween_property(self, intermitten_velocity, 0, 0.1)
 		
-		current_direction = Direction.FORWARDS
 		
 		speed_up.y = 0
 		velocity.y  *= 0.9
-
 func _turning():
+	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
+	
+	print()
+	
+	if input_direction.y == 0:
+		current_direction = Direction.FORWARDS
+	elif input_direction.y == 1 and input_direction.x != -1:
+		current_direction = Direction.DOWNWARDS
+	elif input_direction.y == 1 and input_direction.x == -1:
+		current_direction = Direction.UPWARDS
+	elif input_direction.y == -1 and input_direction.x != 1:
+		current_direction = Direction.UPWARDS
+	elif input_direction.y == -1 and input_direction.x == 1:
+		current_direction = Direction.DOWNWARDS
+	
+	#
+	#match input_direction:
+		#Vector2(0,0):
+			#current_direction = Direction.FORWARDS
+		#Vector2(1,0):
+			#current_direction = Direction.FORWARDS
+		#Vector2(-1,0):
+			#current_direction = Direction.FORWARDS
+		#Vector2(0,1):
+			#current_direction = Direction.DOWNWARDS
+		#Vector2(1,1):
+			#current_direction = Direction.DOWNWARDS
+		#Vector2(-1,1):
+			#current_direction = Direction.UPWARDS
+		#Vector2(0,-1):
+			#current_direction = Direction.UPWARDS
+		#Vector2(1,-1):
+			#current_direction = Direction.UPWARDS
+		#Vector2(-1,-1):
+			#current_direction = Direction.DOWNWARDS
+	
 	if current_direction == Direction.FORWARDS:
 		sprite.play("forwards")
 		forwards.position.y = 0

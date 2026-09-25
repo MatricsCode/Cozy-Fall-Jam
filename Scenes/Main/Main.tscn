@@ -33,4 +33,4 @@ rotation = 1.5707964
 shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="ObstacleLine" parent="." instance=ExtResource("2_qtv3y")]
-position = Vector2(245, -178)
+position = Vector2(152, -89)
