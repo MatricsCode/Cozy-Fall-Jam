@@ -15,5 +15,5 @@ func _on_timer_timeout():
 
 func _spawn():
 	var obstacles = OBSTACLE_LINE.instantiate()
-	obstacles.position = Vector2(340.0, -130.0)
+	obstacles.position = Vector2(340.0, 0)
 	add_child(obstacles)

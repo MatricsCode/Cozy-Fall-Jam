@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://cbyfk238wg2yl"]
+[gd_scene load_steps=3 format=3 uid="uid://cbyfk238wg2yl"]
 
 [ext_resource type="Script" uid="uid://bny55v85e7n8k" path="res://Code/Obstacles/obstacle line/obstacle_line.gd" id="1_qn8oy"]
+[ext_resource type="PackedScene" uid="uid://bly3j20mkirc" path="res://Scenes/Obstacle/obstacle_main.tscn" id="2_f5oxo"]
 
 [node name="ObstacleLine" type="Node2D"]
 script = ExtResource("1_qn8oy")
+
+[node name="ObstacleMain" parent="." instance=ExtResource("2_f5oxo")]
+position = Vector2(0, -256)
+
+[node name="ObstacleMain2" parent="." instance=ExtResource("2_f5oxo")]
+position = Vector2(0, -60.5)
+
+[node name="ObstacleMain3" parent="." instance=ExtResource("2_f5oxo")]
+position = Vector2(0, 70.5)
+
+[node name="ObstacleMain4" parent="." instance=ExtResource("2_f5oxo")]
+position = Vector2(0, 141)

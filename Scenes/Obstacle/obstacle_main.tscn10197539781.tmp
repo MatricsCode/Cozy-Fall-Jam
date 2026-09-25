@@ -5,9 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bct84lfc0f6ya" path="res://Scenes/Obstacle/log.tscn" id="3_ci3kf"]
 [ext_resource type="PackedScene" uid="uid://d2adi7mukj3kk" path="res://Scenes/Obstacle/stone.tscn" id="4_ob2d8"]
 
-[node name="ItemMain" type="StaticBody2D"]
-collision_layer = 3
-collision_mask = 3
+[node name="ObstacleMain" type="StaticBody2D"]
 script = ExtResource("1_3oqjh")
 
 [node name="Stump" parent="." instance=ExtResource("2_gkv08")]

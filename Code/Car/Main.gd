@@ -74,16 +74,16 @@ func _turning():
 		$"UpwardHitArea".position.y = 10000
 		$"DownwardCollision".position.y = 10000 
 		$"DownwardHitArea".position.y = 10000
-	elif current_direction == Direction.DOWNWARDS:
-		sprite.play("downwards")
+	elif current_direction == Direction.UPWARDS:
+		sprite.play("upwards")
 		$"ForwardCollision".position.y = 10000
 		$"ForwardHitArea".position.y  = 10000
 		$"UpwardCollision".position.y = 0
 		$"UpwardHitArea".position.y = 0
 		$"DownwardCollision".position.y = 10000 
 		$"DownwardHitArea".position.y = 10000
-	elif current_direction == Direction.UPWARDS:
-		sprite.play("upwards")
+	elif current_direction == Direction.DOWNWARDS:
+		sprite.play("downwards")
 		$"ForwardCollision".position.y = 10000
 		$"ForwardHitArea".position.y  = 10000
 		$"UpwardCollision".position.y = 10000
@@ -93,4 +93,4 @@ func _turning():
 
 func _on_hit_area_body_entered(body):
 	body.hit()
-	queue_free()
+	#queue_free()
