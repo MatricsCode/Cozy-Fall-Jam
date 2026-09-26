@@ -2,20 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<< HEAD
-uid="uid://b3jqyxeevbcm6"
-=======
-uid="uid://db1kximvog5v3"
->>>>>>> origin/main
-path="res://.godot/imported/Soup_store.png-7638888445bf329bb731d2d64e935aa1.ctex"
+uid="uid://cfqgel6jwcawg"
+path="res://.godot/imported/Bush2.png-797fbae214266b647893dd62e7851869.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Soup_store.png"
-dest_files=["res://.godot/imported/Soup_store.png-7638888445bf329bb731d2d64e935aa1.ctex"]
+source_file="res://Art/Obstacles/Bush2.png"
+dest_files=["res://.godot/imported/Bush2.png-797fbae214266b647893dd62e7851869.ctex"]
 
 [params]
 
