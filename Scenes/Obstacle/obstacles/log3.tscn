@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3eph0ewybx1p"]
+
+[ext_resource type="Script" uid="uid://cf71vlin1s48o" path="res://Code/Obstacles/obstacles/base_obstacle.gd" id="1_fnrtf"]
+[ext_resource type="Texture2D" uid="uid://bpbojivq7prb8" path="res://Art/Obstacles/Trunk3.png" id="2_opt65"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnrtf"]
+size = Vector2(32, 88.708984)
+
+[node name="Log3" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_fnrtf")
+metadata/_custom_type_script = "uid://cf71vlin1s48o"
+
+[node name="LogSprite1" type="Sprite2D" parent="."]
+texture = ExtResource("2_opt65")
+
+[node name="LogCollision1" type="CollisionShape2D" parent="."]
+position = Vector2(1.4453752, 2.6996984)
+scale = Vector2(1, 0.9999999)
+skew = -0.27401674
+shape = SubResource("RectangleShape2D_fnrtf")

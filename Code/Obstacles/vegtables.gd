@@ -17,8 +17,8 @@ func _ready():
 func _on_area_2d_body_entered(_body):
 	if GlobalScript.recipe.find(type_of_veg) != -1:
 		GlobalScript.vegtable_collected.emit(type_of_veg)
-		
-	sprite.queue_free()
+	
+	sprite.visible = false
 	$Area2D.queue_free()
 	
 	$GPUParticles2D.emitting = true

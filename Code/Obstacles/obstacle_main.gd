@@ -2,10 +2,6 @@ extends Node2D
 
 const VEGTABLES = preload("uid://dd47p8tm22bqt")
 
-@onready var stump = $Stump
-@onready var stone = $Stone
-@onready var large_log = $Log
-
 var vegtable = false
 
 func _ready():
@@ -14,6 +10,11 @@ func _ready():
 
 func _spawn():
 	position += Vector2(randf_range(-25,25), randf_range(-25,25))
+	
+	if position.y > 130:
+		position.y = 130
+	elif position.y < -130:
+		position.y = -130
 	
 	if !vegtable:
 		_obstacle()
@@ -28,37 +29,36 @@ func _vegtable():
 	var veg = VEGTABLES.instantiate()
 	add_child(veg)
 func _obstacle():
-	var obstacle = randi_range(0, 13)
+	var obstacle = randi_range(0, 17)
 	if obstacle <= 5:
-		stone.queue_free()
-		large_log.queue_free()
-	
+		_remove_obstacles(0)
 	elif obstacle <= 10:
-		stump.queue_free()
-		large_log.queue_free()
+		_remove_obstacles(1)
 	elif obstacle <= 11:
-		stump.queue_free()
-		stone.queue_free()
-		_remove_siblings(2)
+		_remove_obstacles(2)
+		_remove_siblings()
+	elif obstacle <= 13:
+		_remove_obstacles(3)
+	elif obstacle <= 15:
+		_remove_obstacles(4)
+		
+	
 	
 	else:
 		queue_free()
 
-func _remove_siblings(distance : int):
-	var reach = distance * 2
-	var  sibling = get_index() - distance
-	
-	for i in reach:
-		if sibling < 0:
-			pass
-		elif sibling == get_index():
-			pass
-		elif sibling < get_parent().get_child_count():
-			get_parent().get_child(sibling)._hit()
-			
-		sibling += 1
+func _remove_obstacles(keep : int):
+	for i in get_children():
+		if i.get_index() != keep:
+			i.queue_free()
+
+func _remove_siblings():
+	for i in get_parent().get_children():
+		if i.get_index() != get_index():
+			i.queue_free()
 
 func _hit():
+	prints(get_parent().name, name)
 	get_child(0).hit.connect(queue_free)
 	
 	get_child(0)._hit()

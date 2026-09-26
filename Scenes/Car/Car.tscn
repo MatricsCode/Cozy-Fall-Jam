@@ -83,6 +83,7 @@ frame_progress = 0.61137474
 
 [node name="ForwardCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 8)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_6tdsx")
 
 [node name="ForwardHitArea" type="Area2D" parent="."]
@@ -96,7 +97,7 @@ shape = SubResource("RectangleShape2D_fnsqd")
 [node name="UpwardCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 8)
 rotation = -0.34906584
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_6tdsx")
 
 [node name="UpwardHitArea" type="Area2D" parent="."]
@@ -112,7 +113,7 @@ shape = SubResource("RectangleShape2D_fnsqd")
 [node name="DownwardCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 8)
 rotation = 0.34906584
-scale = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.8, 0.8)
 shape = SubResource("RectangleShape2D_6tdsx")
 
 [node name="DownwardHitArea" type="Area2D" parent="."]

@@ -104,18 +104,7 @@ func _lose():
 	GlobalScript.lost.emit()
 	sprite.play("forwards")
 	var lose = get_tree().create_tween()
-	lose.tween_property(self, "position", Vector2(0, -100), 1)
-	await lose.finished
-	
-	lose.kill()
-	lose = get_tree().create_tween()
-	lose.tween_property(self, "position", Vector2(0, 100), 1)
-	await lose.finished
-	
-	lose.kill()
-	lose = get_tree().create_tween()
-	lose.tween_property(self, "position", Vector2(0, 0), 1)
-
+	lose.tween_property(self, "position", Vector2(200, -75), 1)
 func _start_driving():
 	moving = true
 func _stop_driving():
