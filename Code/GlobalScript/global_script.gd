@@ -38,6 +38,7 @@ func _veg_collected(veg_type):
 	
 	veg_still_required.erase(veg_type)
 	if veg_still_required.size() <= 0:
+		
 		await get_tree().create_timer(0.2).timeout
 		
 		_soup_setting()
@@ -59,20 +60,14 @@ func _soup_setting():
 	new_recipe.emit()
 
 func _physics_process(_delta):
-	current_multiplier += 0.0000001
-	
-	if Input.is_action_just_pressed("Dev2"):
-		vegtable_collected.emit(veg_still_required[0])
-		veg_still_required.remove_at(0)
-	
 	var input = Input.get_axis("Left", "Right")
 	
 	if input == 0:
-		current_direction = 4
-	elif input == -1:
 		current_direction = 3
+	elif input == -1:
+		current_direction = 1
 	elif input == 1:
-		current_direction = 6
+		current_direction = 5
 	
 	current_speed = current_direction * current_multiplier
 
@@ -82,6 +77,9 @@ func _start_driving():
 		await get_tree().create_timer(0.01).timeout
 		_start_driving()
 func _stop_driving():
+	recipe.clear()
+	veg_still_required.clear()
+	
 	if current_multiplier > 0:
 		current_multiplier -= 0.01
 		await get_tree().create_timer(0.01).timeout

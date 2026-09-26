@@ -114,7 +114,7 @@ func _lose():
 func _stop_driving():
 	sprite.play("forwards")
 	var mover = get_tree().create_tween()
-	mover.tween_property(self, "position", Vector2(0, -75), 0.5)
+	mover.tween_property(self, "position", Vector2(0, -125), 0.5)
 	
 	await mover.finished
 	

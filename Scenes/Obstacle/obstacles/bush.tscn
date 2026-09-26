@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtw7lxdlrxmkm"]
+
+[ext_resource type="Script" uid="uid://cf71vlin1s48o" path="res://Code/Obstacles/obstacles/base_obstacle.gd" id="1_nnkq5"]
+[ext_resource type="Texture2D" uid="uid://dicmo3awoodji" path="res://Art/Obstacles/Bush1.png" id="2_rbmfm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w0jbq"]
+radius = 13.038404
+
+[node name="Bush1" type="StaticBody2D"]
+script = ExtResource("1_nnkq5")
+metadata/_custom_type_script = "uid://cf71vlin1s48o"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rbmfm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 19)
+shape = SubResource("CircleShape2D_w0jbq")

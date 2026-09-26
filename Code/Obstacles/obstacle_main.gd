@@ -29,24 +29,29 @@ func _vegtable():
 	var veg = VEGTABLES.instantiate()
 	add_child(veg)
 func _obstacle():
-	var obstacle = randi_range(0, 17)
+	var obstacle = randi_range(0, 25)
+	print(obstacle)
+	
 	if obstacle <= 5:
 		_remove_obstacles(0)
 	elif obstacle <= 10:
 		_remove_obstacles(1)
-	elif obstacle <= 11:
-		_remove_obstacles(2)
-		_remove_siblings()
 	elif obstacle <= 13:
+		_remove_obstacles(2)
+	elif obstacle <= 16:
 		_remove_obstacles(3)
-		_remove_siblings()
-	elif obstacle <= 15:
+	
+	if obstacle <= 18 and obstacle > 16:
 		_remove_obstacles(4)
 		_remove_siblings()
+	elif obstacle <= 20 and obstacle > 16:
+		_remove_obstacles(5)
+		_remove_siblings()
+	elif obstacle <= 22 and obstacle > 16:
+		_remove_obstacles(6)
+		_remove_siblings()
 		
-	
-	
-	else:
+	if obstacle > 22:
 		queue_free()
 
 func _remove_obstacles(keep : int):

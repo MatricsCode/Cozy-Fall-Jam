@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bly3j20mkirc"]
+[gd_scene load_steps=9 format=3 uid="uid://bly3j20mkirc"]
 
 [ext_resource type="Script" uid="uid://d052uqwvkabt8" path="res://Code/Obstacles/obstacle_main.gd" id="1_3oqjh"]
 [ext_resource type="PackedScene" uid="uid://ngs8fr7iw0h5" path="res://Scenes/Obstacle/obstacles/stump.tscn" id="2_uba3n"]
 [ext_resource type="PackedScene" uid="uid://d2adi7mukj3kk" path="res://Scenes/Obstacle/obstacles/stone.tscn" id="3_tpmf4"]
 [ext_resource type="PackedScene" uid="uid://dfs1eyqldgc6m" path="res://Scenes/Obstacle/obstacles/log1.tscn" id="4_g2vro"]
+[ext_resource type="PackedScene" uid="uid://dtw7lxdlrxmkm" path="res://Scenes/Obstacle/obstacles/bush.tscn" id="4_ji5u8"]
+[ext_resource type="PackedScene" uid="uid://c8ct5ysxwf60x" path="res://Scenes/Obstacle/obstacles/bush2.tscn" id="5_58gwf"]
 [ext_resource type="PackedScene" uid="uid://c37bayw1mypf8" path="res://Scenes/Obstacle/obstacles/log2.tscn" id="5_uba3n"]
 [ext_resource type="PackedScene" uid="uid://d3eph0ewybx1p" path="res://Scenes/Obstacle/obstacles/log3.tscn" id="6_tpmf4"]
 
@@ -13,6 +15,10 @@ script = ExtResource("1_3oqjh")
 [node name="Stump" parent="." instance=ExtResource("2_uba3n")]
 
 [node name="Stone" parent="." instance=ExtResource("3_tpmf4")]
+
+[node name="Bush1" parent="." instance=ExtResource("4_ji5u8")]
+
+[node name="Bush2" parent="." instance=ExtResource("5_58gwf")]
 
 [node name="Log" parent="." instance=ExtResource("4_g2vro")]
 
