@@ -1,5 +1,9 @@
 extends Control
 
+func _ready():
+	$VBoxContainer/Start._spawn_in()
+	$VBoxContainer/Settings._spawn_in() 
+	$VBoxContainer/Quit._spawn_in()
 
 func _on_start_pressed():
 	
