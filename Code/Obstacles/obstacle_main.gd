@@ -4,6 +4,8 @@ const VEGTABLES = preload("uid://dd47p8tm22bqt")
 
 var vegtable = false
 
+@export var chances : Array[int]
+
 func _ready():
 	GlobalScript.stop.connect(_hit)
 	GlobalScript.lost.connect(_hit)
@@ -29,30 +31,19 @@ func _vegtable():
 	var veg = VEGTABLES.instantiate()
 	add_child(veg)
 func _obstacle():
-	var obstacle = randi_range(0, 25)
+	var obstacle = randi_range(0, 28)
 	print(obstacle)
 	
-	if obstacle <= 5:
-		_remove_obstacles(0)
-	elif obstacle <= 10:
-		_remove_obstacles(1)
-	elif obstacle <= 13:
-		_remove_obstacles(2)
-	elif obstacle <= 16:
-		_remove_obstacles(3)
-	
-	if obstacle <= 18 and obstacle > 16:
-		_remove_obstacles(4)
-		_remove_siblings()
-	elif obstacle <= 20 and obstacle > 16:
-		_remove_obstacles(5)
-		_remove_siblings()
-	elif obstacle <= 22 and obstacle > 16:
-		_remove_obstacles(6)
-		_remove_siblings()
-		
-	if obstacle > 22:
+	if obstacle > 24:
 		queue_free()
+	
+	for i in chances.size():
+		if obstacle < chances[i]:
+			pass
+		else:
+			_remove_obstacles(i)
+			if chances.size() - i <= 3:
+				_remove_siblings()
 
 func _remove_obstacles(keep : int):
 	for i in get_children():
