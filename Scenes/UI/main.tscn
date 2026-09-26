@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dl6qhcx58bdfy"]
+[gd_scene load_steps=16 format=3 uid="uid://dl6qhcx58bdfy"]
 
 [ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_otj8o"]
 [ext_resource type="Script" uid="uid://bpya7qpafuoi4" path="res://Code/UI/notepad.gd" id="2_37xw0"]
 [ext_resource type="Texture2D" uid="uid://bp76eorkbs2w5" path="res://Art/Juice/Smoke1.png" id="3_40bib"]
 [ext_resource type="Texture2D" uid="uid://ct5ll8xxmts4v" path="res://Art/Juice/Smoke2.png" id="4_o0om2"]
 [ext_resource type="Texture2D" uid="uid://b0boxyi4pkhgo" path="res://Art/Juice/Smoke3.png" id="5_tvx3w"]
+[ext_resource type="Script" uid="uid://ijial0rcmrcc" path="res://Code/UI/ending_menu.gd" id="6_ayamy"]
 [ext_resource type="Script" uid="uid://doura2iuxq6mr" path="res://Code/UI/run_summary.gd" id="6_o0om2"]
 [ext_resource type="PackedScene" uid="uid://ddla4galxokjj" path="res://Scenes/UI/clock.tscn" id="7_tvx3w"]
+[ext_resource type="Script" uid="uid://cg7h46f0tugx7" path="res://Code/UI/start_menu.gd" id="8_4jq3l"]
+[ext_resource type="PackedScene" uid="uid://eq6q5o8w6uv4" path="res://Code/UI/Button/button.tscn" id="10_7dvw4"]
 
 [sub_resource type="Curve" id="Curve_4jq3l"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -64,6 +67,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NotePad" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 10.0
@@ -108,6 +112,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="NotePad"]
+visible = false
 position = Vector2(69, 79)
 emitting = false
 amount = 32
@@ -117,6 +122,7 @@ explosiveness = 0.72
 process_material = SubResource("ParticleProcessMaterial_ayamy")
 
 [node name="GPUParticles2D2" type="GPUParticles2D" parent="NotePad"]
+visible = false
 position = Vector2(69, 79)
 emitting = false
 amount = 32
@@ -126,6 +132,7 @@ explosiveness = 0.72
 process_material = SubResource("ParticleProcessMaterial_7dvw4")
 
 [node name="GPUParticles2D3" type="GPUParticles2D" parent="NotePad"]
+visible = false
 position = Vector2(69, 79)
 emitting = false
 amount = 32
@@ -134,31 +141,112 @@ one_shot = true
 explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_y7ngx")
 
-[node name="Control" type="Control" parent="."]
+[node name="Clock" parent="." instance=ExtResource("7_tvx3w")]
 layout_mode = 1
-anchor_top = 0.35
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="EndingUI" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("6_ayamy")
 
-[node name="Label" type="Label" parent="Control/VBoxContainer"]
+[node name="Main" type="VBoxContainer" parent="EndingUI"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_right = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Control" type="Control" parent="EndingUI/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="EndingUI/Main/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -127.0
+offset_right = 127.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Start" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+text = "Start"
+
+[node name="Settings" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+text = "Quit"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndingUI/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="EndingUI/Main/VBoxContainer"]
 layout_mode = 2
 
-[node name="RunSummary" type="GridContainer" parent="Control/VBoxContainer"]
+[node name="RunSummary" type="GridContainer" parent="EndingUI/Main/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
 columns = 3
 script = ExtResource("6_o0om2")
 
-[node name="Clock" parent="." instance=ExtResource("7_tvx3w")]
+[node name="Start" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_4jq3l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 190.0
+offset_right = -190.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Start" parent="Start/VBoxContainer" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Settings" parent="Start/VBoxContainer" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="Quit" parent="Start/VBoxContainer" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Start" to="EndingUI" method="_on_start_pressed"]
+[connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Settings" to="EndingUI" method="_on_settings_pressed"]
+[connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Quit" to="EndingUI" method="_on_quit_pressed"]
+[connection signal="pressed" from="Start/VBoxContainer/Start" to="Start" method="_on_start_pressed"]
+[connection signal="pressed" from="Start/VBoxContainer/Settings" to="Start" method="_on_settings_pressed"]
+[connection signal="pressed" from="Start/VBoxContainer/Quit" to="Start" method="_on_quit_pressed"]

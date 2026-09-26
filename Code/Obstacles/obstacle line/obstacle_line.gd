@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready():
-	position.y += randf_range(-100, 100)
+	position.y += randf_range(-50, 50)
 	
 	var vegtable = randi_range(0, 2)
 	

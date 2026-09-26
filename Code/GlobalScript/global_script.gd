@@ -8,15 +8,16 @@ signal new_recipe
 
 signal vegtable_collected(veg_type)
 
+signal increase_mult(new_value)
+
 var current_direction = 0
 var current_multiplier = 0
-var current_speed = 0
+var current_speed = 2
 
 var recipes_finished = []
 
 var recipe = []
 var veg_still_required = []
-var veg_collected = []
 
 var difficulty_mod = 3
 
@@ -32,8 +33,11 @@ func _start_run():
 	start.emit()
 
 func _veg_collected(veg_type):
-	veg_collected.append(veg_type)
-	if veg_collected.size() >= recipe.size():
+	if veg_still_required.find(veg_type) == -1:
+		return
+	
+	veg_still_required.erase(veg_type)
+	if veg_still_required.size() <= 0:
 		await get_tree().create_timer(0.2).timeout
 		
 		_soup_setting()
@@ -46,7 +50,6 @@ func _soup_setting():
 	
 	recipe.clear()
 	veg_still_required.clear()
-	veg_collected.clear()
 	
 	var length = randi_range(1, difficulty_mod)
 	while length > 0:
@@ -58,9 +61,6 @@ func _soup_setting():
 func _physics_process(_delta):
 	current_multiplier += 0.0000001
 	
-	if Input.is_action_just_pressed("Dev1"):
-		_start_run()
-	
 	if Input.is_action_just_pressed("Dev2"):
 		vegtable_collected.emit(veg_still_required[0])
 		veg_still_required.remove_at(0)
@@ -68,19 +68,21 @@ func _physics_process(_delta):
 	var input = Input.get_axis("Left", "Right")
 	
 	if input == 0:
-		current_direction = 2
-	elif input == -1:
-		current_direction = 1
-	elif input == 1:
 		current_direction = 4
+	elif input == -1:
+		current_direction = 3
+	elif input == 1:
+		current_direction = 6
 	
 	current_speed = current_direction * current_multiplier
 
 func _start_driving():
 	if current_multiplier < 1:
-		current_multiplier += 0.05
+		current_multiplier += 0.01
+		await get_tree().create_timer(0.01).timeout
 		_start_driving()
 func _stop_driving():
 	if current_multiplier > 0:
-		current_multiplier -= 0.05
+		current_multiplier -= 0.01
+		await get_tree().create_timer(0.01).timeout
 		_stop_driving()

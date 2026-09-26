@@ -17,10 +17,6 @@ var text_rects : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#GlobalScript.start.connect(_move_notepad)
-	#GlobalScript.lost.connect(_move_notepad)
-	#GlobalScript.stop.connect(_move_notepad)
-	
 	text_rects = [$HBoxContainer/TextureRect,
 		$HBoxContainer/TextureRect2,
 		$HBoxContainer/TextureRect3,
@@ -42,6 +38,8 @@ func _ready():
 func _label():
 	await _wipe()
 	
+	get_parent().visible = true
+	
 	for i in GlobalScript.recipe.size():
 		match GlobalScript.recipe[i]:
 			1:
@@ -55,11 +53,13 @@ func _label():
 			5:
 				text_rects.get(i).texture = TURNIP_GHOST
 func _wipe():
-	$"../GPUParticles2D".emitting = true
-	$"../GPUParticles2D2".emitting = true
-	$"../GPUParticles2D3".emitting = true
+	#$"../GPUParticles2D".emitting = true
+	#$"../GPUParticles2D2".emitting = true
+	#$"../GPUParticles2D3".emitting = true
 	
-	await get_tree().create_timer(0.2).timeout
+	#await get_tree().create_timer(0.2).timeout
+	
+	get_parent().visible = false
 	
 	for i in text_rects:
 		i.texture = null
