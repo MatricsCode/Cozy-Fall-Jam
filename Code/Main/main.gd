@@ -12,12 +12,12 @@ func _ready():
 func _stop():
 	spawn_timer.stop()
 func _start():
-	spawn_timer.wait_time = randf_range(0.5, 3)
+	spawn_timer.wait_time = randf_range(1, 3)
 	spawn_timer.start()
 
 
 func _on_timer_timeout():
-	spawn_timer.wait_time = randf_range(0.5, 3)
+	spawn_timer.wait_time = randf_range(1, 3)
 	spawn_timer.start()
 	_spawn()
 

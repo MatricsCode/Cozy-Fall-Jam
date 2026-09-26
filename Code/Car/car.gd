@@ -58,17 +58,17 @@ func _movement():
 		speed_up.y = 0
 		velocity.y  *= 0.9
 func _turning():
-	if input_direction.y < 0 and input_direction.x >= 0:
+	if input_direction.y < 0:# and input_direction.x >= 0:
 		current_direction = Direction.UPWARDS
-	elif input_direction.y < 0 and input_direction.x < 0:
-		current_direction = Direction.DOWNWARDS
+	#elif input_direction.y < 0 and input_direction.x < 0:
+		#current_direction = Direction.DOWNWARDS
 	
-	if input_direction.y > 0 and input_direction.x >= 0:
+	elif input_direction.y > 0:# and input_direction.x >= 0:
 		current_direction = Direction.DOWNWARDS
-	elif input_direction.y > 0 and input_direction.x < 0:
-		current_direction = Direction.UPWARDS
+	#elif input_direction.y > 0 and input_direction.x < 0:
+		#current_direction = Direction.UPWARDS
 	
-	if input_direction.y == 0:
+	elif input_direction.y == 0:
 		current_direction = Direction.FORWARDS
 
 	if current_direction == Direction.FORWARDS:
@@ -100,12 +100,22 @@ func _on_hit_area_body_entered(body):
 	body.get_parent()._hit()
 	_lose()
 
+func _start_driving():
+	sprite.play("forwards")
+	var mover = get_tree().create_tween()
+	mover.tween_property(self, "position", Vector2(0, 0), 1.5)
+	
+	await mover.finished
+	
+	moving = true
 func _lose():
 	GlobalScript.lost.emit()
-	sprite.play("forwards")
-	var lose = get_tree().create_tween()
-	lose.tween_property(self, "position", Vector2(200, -75), 1)
-func _start_driving():
-	moving = true
+	_stop_driving()
 func _stop_driving():
+	sprite.play("forwards")
+	var mover = get_tree().create_tween()
+	mover.tween_property(self, "position", Vector2(0, -75), 0.5)
+	
+	await mover.finished
+	
 	moving = false

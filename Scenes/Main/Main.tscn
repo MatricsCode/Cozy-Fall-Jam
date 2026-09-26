@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dl6qhcx58bdfy" path="res://Scenes/UI/main.tscn" id="3_cmk6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
-size = Vector2(595, 20)
+size = Vector2(595, 3)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cmk6n")
@@ -15,6 +15,7 @@ script = ExtResource("1_cmk6n")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Car" parent="." instance=ExtResource("1_p8rbg")]
+position = Vector2(0, -75)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -23,7 +24,7 @@ position = Vector2(-27.5, 141)
 shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-27, -142)
+position = Vector2(-27, -150.5)
 shape = SubResource("RectangleShape2D_p8rbg")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]

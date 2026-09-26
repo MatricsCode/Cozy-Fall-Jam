@@ -11,10 +11,10 @@ func _ready():
 func _spawn():
 	position += Vector2(randf_range(-25,25), randf_range(-25,25))
 	
-	if position.y > 130:
-		position.y = 130
-	elif position.y < -130:
-		position.y = -130
+	if position.y > 100:
+		position.y = 100
+	elif position.y < -100:
+		position.y = -100
 	
 	if !vegtable:
 		_obstacle()
@@ -39,8 +39,10 @@ func _obstacle():
 		_remove_siblings()
 	elif obstacle <= 13:
 		_remove_obstacles(3)
+		_remove_siblings()
 	elif obstacle <= 15:
 		_remove_obstacles(4)
+		_remove_siblings()
 		
 	
 	

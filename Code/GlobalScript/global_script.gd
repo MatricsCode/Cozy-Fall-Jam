@@ -54,7 +54,8 @@ func _soup_setting():
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("Dev1"):
 		_start_run()
-	elif Input.is_action_just_pressed("Dev2"):
+	
+	if Input.is_action_just_pressed("Dev2"):
 		veg_collected.append(veg_still_required[0])
 		vegtable_collected.emit(veg_still_required[0])
 		veg_still_required.remove_at(0)

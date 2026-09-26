@@ -13,6 +13,9 @@ var text_rects : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#GlobalScript.start.connect(_move_notepad)
+	#GlobalScript.lost.connect(_move_notepad)
+	#GlobalScript.stop.connect(_move_notepad)
 	
 	text_rects = [$HBoxContainer/TextureRect,
 		$HBoxContainer/TextureRect2,
@@ -27,6 +30,10 @@ func _ready():
 	GlobalScript.lost.connect(_wipe)
 	
 	GlobalScript.vegtable_collected.connect(_check)
+#
+#func _move_notepad():
+	#if postition == Vector2.ZERO:
+		#var tweener = get_tree().create_tween()
 
 func _label():
 	await _wipe()
@@ -39,7 +46,6 @@ func _label():
 				text_rects.get(i).texture = CARROT_GHOST
 			3:
 				text_rects.get(i).texture = POTATO_GHOST
-
 func _wipe():
 	$"../GPUParticles2D".emitting = true
 	$"../GPUParticles2D2".emitting = true

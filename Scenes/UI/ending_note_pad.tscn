@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://df3xe25lgbb8w"]
+
+[ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_vlnh0"]
+[ext_resource type="Script" uid="uid://br7svtbdqhea0" path="res://Code/UI/note_pads.gd" id="2_4qb5t"]
+
+[node name="NotePad" type="TextureRect"]
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 153.0
+offset_bottom = 138.0
+texture = ExtResource("1_vlnh0")
+script = ExtResource("2_4qb5t")
+
+[node name="Icons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Icons/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Icons/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Icons/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Icons/HBoxContainer2"]
+layout_mode = 2
