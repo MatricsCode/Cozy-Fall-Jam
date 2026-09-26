@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends BaseObstacle
 
 func _ready():
 	for i in $Area2D.get_overlapping_bodies():

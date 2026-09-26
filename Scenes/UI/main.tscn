@@ -1,7 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl6qhcx58bdfy"]
+[gd_scene load_steps=11 format=3 uid="uid://dl6qhcx58bdfy"]
 
 [ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_otj8o"]
 [ext_resource type="Script" uid="uid://bpya7qpafuoi4" path="res://Code/UI/notepad.gd" id="2_37xw0"]
+[ext_resource type="Texture2D" uid="uid://bp76eorkbs2w5" path="res://Art/Juice/Smoke1.png" id="3_40bib"]
+[ext_resource type="Texture2D" uid="uid://ct5ll8xxmts4v" path="res://Art/Juice/Smoke2.png" id="4_o0om2"]
+[ext_resource type="Texture2D" uid="uid://b0boxyi4pkhgo" path="res://Art/Juice/Smoke3.png" id="5_tvx3w"]
+
+[sub_resource type="Curve" id="Curve_4jq3l"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.6966293), 0.0, 0.0, 0, 0, Vector2(0.5909091, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.6314609, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bwqrh"]
+curve = SubResource("Curve_4jq3l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ayamy"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 5)
+emission_shape = 1
+emission_sphere_radius = 8.32
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_bwqrh")
+color = Color(0.6392157, 0.654902, 0.7607843, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7dvw4"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(5, 5, 5)
+emission_shape = 1
+emission_sphere_radius = 8.32
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_bwqrh")
+color = Color(0.6392157, 0.654902, 0.7607843, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y7ngx"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+gravity = Vector3(0, 9.8, 0)
+scale_curve = SubResource("CurveTexture_bwqrh")
+color = Color(0.6392157, 0.654902, 0.7607843, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -54,3 +104,30 @@ layout_mode = 2
 
 [node name="TextureRect3" type="TextureRect" parent="NotePad/Icons/HBoxContainer2"]
 layout_mode = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="NotePad"]
+position = Vector2(69, 79)
+emitting = false
+amount = 32
+texture = ExtResource("3_40bib")
+one_shot = true
+explosiveness = 0.72
+process_material = SubResource("ParticleProcessMaterial_ayamy")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="NotePad"]
+position = Vector2(69, 79)
+emitting = false
+amount = 32
+texture = ExtResource("4_o0om2")
+one_shot = true
+explosiveness = 0.72
+process_material = SubResource("ParticleProcessMaterial_7dvw4")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="NotePad"]
+position = Vector2(69, 79)
+emitting = false
+amount = 32
+texture = ExtResource("5_tvx3w")
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_y7ngx")

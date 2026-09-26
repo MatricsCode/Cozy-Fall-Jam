@@ -6,6 +6,7 @@ const OBSTACLE_LINE = preload("uid://cbyfk238wg2yl")
 
 func _ready():
 	GlobalScript.start.connect(_start)
+	GlobalScript.stop.connect(_stop)
 	GlobalScript.lost.connect(_stop)
 
 func _stop():

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bct84lfc0f6ya"]
 
-[ext_resource type="Script" uid="uid://b7u8gkh8y0los" path="res://Code/Obstacles/log_obstacle.gd" id="1_vu7hx"]
+[ext_resource type="Script" uid="uid://cf71vlin1s48o" path="res://Code/Obstacles/obstacles/base_obstacle.gd" id="1_vu7hx"]
 [ext_resource type="Texture2D" uid="uid://csmkbsgwnhkw4" path="res://Art/Obstacles/Trunk1.png" id="2_6hlsy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ed4jl"]
@@ -9,11 +9,11 @@ size = Vector2(32, 158)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vu7hx"]
 size = Vector2(2, 381)
 
-[node name="Log" type="StaticBody2D"]
-y_sort_enabled = true
-collision_layer = 3
-collision_mask = 3
+[node name="BaseObstacle" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_vu7hx")
+metadata/_custom_type_script = "uid://cf71vlin1s48o"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_6hlsy")

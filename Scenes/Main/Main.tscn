@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c2toq2ab6un2n"]
+[gd_scene load_steps=5 format=3 uid="uid://c2toq2ab6un2n"]
 
 [ext_resource type="Script" uid="uid://b2hgu73umbhn8" path="res://Code/Main/main.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://2wbjquktqfgh" path="res://Scenes/Car/Car.tscn" id="1_p8rbg"]
+[ext_resource type="PackedScene" uid="uid://dl6qhcx58bdfy" path="res://Scenes/UI/main.tscn" id="3_cmk6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
 size = Vector2(595, 20)
@@ -34,5 +35,14 @@ shape = SubResource("RectangleShape2D_p8rbg")
 position = Vector2(264, 0)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_p8rbg")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("3_cmk6n")]
+offset_left = -320.0
+offset_top = -240.0
+offset_right = -320.0
+offset_bottom = -240.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

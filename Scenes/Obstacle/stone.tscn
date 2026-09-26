@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2adi7mukj3kk"]
+[gd_scene load_steps=4 format=3 uid="uid://d2adi7mukj3kk"]
 
 [ext_resource type="Texture2D" uid="uid://bt2m1qgyxumhj" path="res://Art/Obstacles/Boulder1.png" id="1_elylk"]
+[ext_resource type="Script" uid="uid://cf71vlin1s48o" path="res://Code/Obstacles/obstacles/base_obstacle.gd" id="1_vhveh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elylk"]
 size = Vector2(32, 22)
 
-[node name="Stone" type="StaticBody2D"]
-y_sort_enabled = true
-collision_layer = 3
-collision_mask = 3
+[node name="BaseObstacle" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_vhveh")
+metadata/_custom_type_script = "uid://cf71vlin1s48o"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_elylk")

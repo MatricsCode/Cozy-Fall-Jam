@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://2wbjquktqfgh"]
 
-[ext_resource type="Script" uid="uid://djtleh5qvgkbx" path="res://Code/Car/Main.gd" id="1_fnsqd"]
+[ext_resource type="Script" uid="uid://djtleh5qvgkbx" path="res://Code/Car/car.gd" id="1_fnsqd"]
 [ext_resource type="Texture2D" uid="uid://3asoff1a0433" path="res://Art/Truck/Truck.png" id="2_6tdsx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asnge"]
@@ -86,7 +86,7 @@ position = Vector2(-4, 8)
 shape = SubResource("RectangleShape2D_6tdsx")
 
 [node name="ForwardHitArea" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ForwardHitArea"]
@@ -100,7 +100,7 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_6tdsx")
 
 [node name="UpwardHitArea" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpwardHitArea"]
@@ -116,7 +116,7 @@ scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_6tdsx")
 
 [node name="DownwardHitArea" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownwardHitArea"]

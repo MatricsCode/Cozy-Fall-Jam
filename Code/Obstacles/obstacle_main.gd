@@ -8,9 +8,11 @@ const VEGTABLES = preload("uid://dd47p8tm22bqt")
 
 var vegtable = false
 
-func _spawn():
+func _ready():
+	GlobalScript.stop.connect(_hit)
 	GlobalScript.lost.connect(_hit)
-	
+
+func _spawn():
 	position += Vector2(randf_range(-25,25), randf_range(-25,25))
 	
 	if !vegtable:
@@ -57,4 +59,6 @@ func _remove_siblings(distance : int):
 		sibling += 1
 
 func _hit():
-	queue_free()
+	get_child(0).hit.connect(queue_free)
+	
+	get_child(0)._hit()
