@@ -10,12 +10,13 @@ func _ready():
 		type_of_veg = GlobalScript.veg_still_required[randi_range(GlobalScript.veg_collected.size(), GlobalScript.veg_still_required.size()-1)]
 		sprite.play(str(type_of_veg))
 	else:
-		type_of_veg = randi_range(1,3)
+		type_of_veg = randi_range(1,5)
 		sprite.play(str(type_of_veg))
 
 
 func _on_area_2d_body_entered(_body):
 	if GlobalScript.recipe.find(type_of_veg) != -1:
+		GlobalScript.recipe.erase(type_of_veg)
 		GlobalScript.vegtable_collected.emit(type_of_veg)
 	
 	sprite.visible = false

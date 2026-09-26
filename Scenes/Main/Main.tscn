@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2toq2ab6un2n"]
+[gd_scene load_steps=6 format=3 uid="uid://c2toq2ab6un2n"]
 
 [ext_resource type="Script" uid="uid://b2hgu73umbhn8" path="res://Code/Main/main.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://2wbjquktqfgh" path="res://Scenes/Car/Car.tscn" id="1_p8rbg"]
+[ext_resource type="PackedScene" uid="uid://cuque3f4qhy2o" path="res://Scenes/UI/background.tscn" id="2_i3fi7"]
 [ext_resource type="PackedScene" uid="uid://dl6qhcx58bdfy" path="res://Scenes/UI/main.tscn" id="3_cmk6n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
@@ -9,6 +10,12 @@ size = Vector2(595, 3)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cmk6n")
+
+[node name="Control" parent="." instance=ExtResource("2_i3fi7")]
+offset_left = -320.0
+offset_top = -240.0
+offset_right = -280.0
+offset_bottom = -200.0
 
 [node name="SpawnTimer" type="Timer" parent="."]
 

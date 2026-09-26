@@ -3,10 +3,14 @@ extends VBoxContainer
 const BEETROOT_GHOST = preload("uid://dtjkc1mfn1kly")
 const CARROT_GHOST = preload("uid://ck2q54axw5ywh")
 const POTATO_GHOST = preload("uid://bggft0q1w7tmm")
+const ONION_GHOST = preload("uid://dp3ckwv1dtmay")
+const TURNIP_GHOST = preload("uid://bg3icl6fvbeei")
 
 const BEETROOT = preload("uid://dubebsniedxk3")
 const CARROT = preload("uid://bv8wcd35unlgx")
 const POTATO = preload("uid://blptbb5xkblaw")
+const ONION = preload("uid://ddt1np16v7ftx")
+const TURNIP = preload("uid://ck4x7w3v6hwgr")
 
 
 var text_rects : Array
@@ -46,6 +50,10 @@ func _label():
 				text_rects.get(i).texture = CARROT_GHOST
 			3:
 				text_rects.get(i).texture = POTATO_GHOST
+			4:
+				text_rects.get(i).texture = ONION_GHOST
+			5:
+				text_rects.get(i).texture = TURNIP_GHOST
 func _wipe():
 	$"../GPUParticles2D".emitting = true
 	$"../GPUParticles2D2".emitting = true
@@ -73,7 +81,12 @@ func _check(vegtable_type):
 		3:
 			new_texture = POTATO
 			check_texture = POTATO_GHOST
-	
+		4:
+			new_texture = ONION
+			check_texture = ONION_GHOST
+		5:
+			new_texture = TURNIP
+			check_texture = TURNIP_GHOST
 	
 	
 	for i in text_rects:

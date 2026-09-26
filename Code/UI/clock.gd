@@ -12,7 +12,7 @@ func _ready():
 	GlobalScript.new_recipe.connect(_more_time)
 
 func _starting():
-	time_left = 120
+	time_left = 60
 	time_label.text = str("Time Left: ", time_left, " sec")
 	timer.start()
 func _stoping():
