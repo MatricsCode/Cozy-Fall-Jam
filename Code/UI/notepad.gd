@@ -45,8 +45,6 @@ func _ready():
 func _label():
 	await _wipe()
 	
-	visible = true
-	
 	for i in GlobalScript.recipe.size():
 		match GlobalScript.recipe[i]:
 			1:
@@ -65,8 +63,6 @@ func _wipe():
 	#$"../GPUParticles2D3".emitting = true
 	
 	#await get_tree().create_timer(0.2).timeout
-	
-	visible = false
 	
 	for i in text_rects:
 		i.texture = null
@@ -118,8 +114,6 @@ func _stop():
 	stopper.tween_property(self, "scale", Vector2.ZERO, 1.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	
 	await stopper.finished
-	
-	visible = false
 
 func _on_mouse_entered():
 	var excited = get_tree().create_tween()

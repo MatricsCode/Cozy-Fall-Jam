@@ -31,7 +31,6 @@ func _ready():
 	position.x -= 500
 
 func _start():
-	visible = true
 	var starter = get_tree().create_tween()
 	
 	starter.set_parallel(true)
@@ -58,8 +57,6 @@ func _stop():
 	
 	time_label.text = ""
 	timer.stop()
-	
-	visible = false
 func _more_time():
 	if GlobalScript.recipes_finished.size() == 0:
 		return

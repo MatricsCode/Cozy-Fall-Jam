@@ -42,7 +42,7 @@ func _ready():
 		$Icons/HBoxContainer2/TextureRect3]
 	
 	var current_array : Array
-	current_array.append_array(GlobalScript.recipes_finished[GlobalScript.get_child_count()-1])
+	current_array.append_array(GlobalScript.recipes_finished[get_parent().get_child_count()-1])
 	
 	points = current_array.size()
 	

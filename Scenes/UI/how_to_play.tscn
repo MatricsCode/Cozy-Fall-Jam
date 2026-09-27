@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bwki80rl1c3b1"]
+[gd_scene load_steps=15 format=3 uid="uid://bwki80rl1c3b1"]
 
 [ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_23ib0"]
 [ext_resource type="Texture2D" uid="uid://dtjkc1mfn1kly" path="res://Art/Veggies/Indicators/Beetroot_ghost.png" id="2_8b7o0"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bt2m1qgyxumhj" path="res://Art/Obstacles/Boulder1.png" id="9_ci4fw"]
 [ext_resource type="Texture2D" uid="uid://cfqgel6jwcawg" path="res://Art/Obstacles/Bush2.png" id="10_4fdli"]
 [ext_resource type="Texture2D" uid="uid://h5308i8067x6" path="res://Art/Obstacles/Stump2.png" id="11_7vuxk"]
-[ext_resource type="Texture2D" uid="uid://dicmo3awoodji" path="res://Art/Obstacles/Bush1.png" id="12_ipxf7"]
-[ext_resource type="Texture2D" uid="uid://cyxqagp65jvn5" path="res://Art/Obstacles/Boulder2.png" id="13_4fdli"]
 [ext_resource type="Texture2D" uid="uid://sk48ohsply27" path="res://Art/UI/SmallStart2.png" id="14_ipxf7"]
 [ext_resource type="Script" uid="uid://c6oslk8cp5qy" path="res://Code/UI/Button/base_button.gd" id="15_xbq3g"]
 
@@ -67,7 +65,7 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "You have been tasked with collecting   [shake][color=brown]root vegtables[/color][/shake]   for the local [wave][color=green]stew shop[/color][/wave]! 
+text = "You have been tasked with collecting   [shake][color=orange]root vegtables[/color][/shake]   for the local [wave][color=green]stew shop[/color][/wave]! 
 
 You can see the recipes in the [color=gray]top left corner![/color] 
 
@@ -203,7 +201,8 @@ offset_bottom = -11.0
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
-text = "Beware of the [shake][color=red]obstacles![/color][/shake] 
+text = "Stear with WASD or Arrowkeys. You can make the van go slower or faster!
+Beware of the [shake][color=red]obstacles![/color][/shake] 
 
 Don't [wave]hit[/wave] them or your shift will be cut short and you will [shake][color=red]have to restart!"
 
@@ -213,7 +212,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
+offset_left = 11.0
+offset_top = -88.0
+offset_right = 11.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
 columns = 3
@@ -229,14 +231,6 @@ texture = ExtResource("10_4fdli")
 [node name="TextureRect3" type="TextureRect" parent="Panel2/GridContainer"]
 layout_mode = 2
 texture = ExtResource("11_7vuxk")
-
-[node name="TextureRect4" type="TextureRect" parent="Panel2/GridContainer"]
-layout_mode = 2
-texture = ExtResource("12_ipxf7")
-
-[node name="TextureRect5" type="TextureRect" parent="Panel2/GridContainer"]
-layout_mode = 2
-texture = ExtResource("13_4fdli")
 
 [node name="super_button" type="Button" parent="."]
 layout_mode = 0

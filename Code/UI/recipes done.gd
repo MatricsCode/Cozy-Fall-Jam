@@ -22,7 +22,6 @@ func _increase_number():
 	label.text = str(counter, "x")
 
 func _start():
-	visible = true
 	var starter = get_tree().create_tween()
 	
 	starter.set_parallel(true)
@@ -40,7 +39,6 @@ func _stop():
 	
 	await stopper.finished
 	
-	visible = false
 	counter = -1
 
 func _on_mouse_entered():
