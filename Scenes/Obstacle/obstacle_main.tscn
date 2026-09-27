@@ -13,7 +13,7 @@
 
 [node name="ItemMain" type="Node2D"]
 script = ExtResource("1_3oqjh")
-chances = [3, 6, 9, 12, 15, 18, 20, 22, 24]
+chances = Array[int]([3, 6, 9, 12, 15, 18, 20, 22, 24])
 
 [node name="Stump" parent="." instance=ExtResource("2_uba3n")]
 

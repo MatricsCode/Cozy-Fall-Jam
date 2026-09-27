@@ -32,18 +32,15 @@ func _vegtable():
 	add_child(veg)
 func _obstacle():
 	var obstacle = randi_range(0, 28)
-	print(obstacle)
-	
 	if obstacle > 24:
 		queue_free()
 	
 	for i in chances.size():
-		if obstacle < chances[i]:
+		if obstacle > chances[i]:
 			pass
-		else:
+		elif obstacle <= chances[i]:
 			_remove_obstacles(i)
-			if chances.size() - i <= 3:
-				_remove_siblings()
+			return
 
 func _remove_obstacles(keep : int):
 	for i in get_children():
