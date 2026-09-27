@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dl6qhcx58bdfy"]
+[gd_scene load_steps=19 format=3 uid="uid://dl6qhcx58bdfy"]
 
 [ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_otj8o"]
 [ext_resource type="Script" uid="uid://bpya7qpafuoi4" path="res://Code/UI/notepad.gd" id="2_37xw0"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ddla4galxokjj" path="res://Scenes/UI/clock.tscn" id="7_tvx3w"]
 [ext_resource type="Script" uid="uid://cg7h46f0tugx7" path="res://Code/UI/start_menu.gd" id="8_4jq3l"]
 [ext_resource type="PackedScene" uid="uid://eq6q5o8w6uv4" path="res://Code/UI/Button/button.tscn" id="10_7dvw4"]
+[ext_resource type="Texture2D" uid="uid://c0t45xwcodh50" path="res://Art/UI/Start.png" id="11_smf5i"]
+[ext_resource type="Texture2D" uid="uid://b7tmik38td038" path="res://Art/UI/How to play.png" id="12_smf5i"]
+[ext_resource type="PackedScene" uid="uid://bwki80rl1c3b1" path="res://Scenes/UI/how_to_play.tscn" id="13_cfy4c"]
 
 [sub_resource type="Curve" id="Curve_4jq3l"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -66,6 +69,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Clock" parent="." instance=ExtResource("7_tvx3w")]
+layout_mode = 1
+
+[node name="EndingUI" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_ayamy")
+
+[node name="Main" type="VBoxContainer" parent="EndingUI"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -235.0
+offset_right = 235.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Control" type="Control" parent="EndingUI/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="EndingUI/Main/Control"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -185.5
+offset_right = 185.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Start" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+icon = ExtResource("11_smf5i")
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndingUI/Main"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="EndingUI/Main/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="RunSummary" type="GridContainer" parent="EndingUI/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+columns = 3
+script = ExtResource("6_o0om2")
+
 [node name="NotePad" type="TextureRect" parent="."]
 visible = false
 layout_mode = 0
@@ -74,6 +141,7 @@ offset_top = 10.0
 offset_right = 153.0
 offset_bottom = 138.0
 texture = ExtResource("1_otj8o")
+script = ExtResource("2_37xw0")
 
 [node name="Icons" type="VBoxContainer" parent="NotePad"]
 layout_mode = 1
@@ -83,7 +151,6 @@ anchor_bottom = 1.0
 offset_top = 34.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_37xw0")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="NotePad/Icons"]
 layout_mode = 2
@@ -141,73 +208,9 @@ one_shot = true
 explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_y7ngx")
 
-[node name="Clock" parent="." instance=ExtResource("7_tvx3w")]
-layout_mode = 1
-
-[node name="EndingUI" type="Control" parent="."]
+[node name="Control" parent="." instance=ExtResource("13_cfy4c")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("6_ayamy")
-
-[node name="Main" type="VBoxContainer" parent="EndingUI"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -235.0
-offset_right = 235.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 25
-
-[node name="Control" type="Control" parent="EndingUI/Main"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="EndingUI/Main/Control"]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -127.0
-offset_right = 127.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Start" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
-layout_mode = 2
-text = "Start"
-
-[node name="Settings" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
-layout_mode = 2
-text = "Settings"
-
-[node name="Quit" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
-layout_mode = 2
-text = "Quit"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="EndingUI/Main"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="EndingUI/Main/VBoxContainer"]
-layout_mode = 2
-
-[node name="RunSummary" type="GridContainer" parent="EndingUI/Main/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 3
-columns = 3
-script = ExtResource("6_o0om2")
 
 [node name="Start" type="Control" parent="."]
 layout_mode = 1
@@ -232,21 +235,18 @@ alignment = 1
 [node name="Start" parent="Start/VBoxContainer" instance=ExtResource("10_7dvw4")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Start"
+icon = ExtResource("11_smf5i")
+flat = true
+icon_alignment = 1
 
 [node name="Settings" parent="Start/VBoxContainer" instance=ExtResource("10_7dvw4")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "Settings"
-
-[node name="Quit" parent="Start/VBoxContainer" instance=ExtResource("10_7dvw4")]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Quit"
+icon = ExtResource("12_smf5i")
+flat = true
 
 [connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Start" to="EndingUI" method="_on_start_pressed"]
-[connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Settings" to="EndingUI" method="_on_settings_pressed"]
-[connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Quit" to="EndingUI" method="_on_quit_pressed"]
+[connection signal="mouse_entered" from="NotePad" to="NotePad" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="NotePad" to="NotePad" method="_on_mouse_exited"]
 [connection signal="pressed" from="Start/VBoxContainer/Start" to="Start" method="_on_start_pressed"]
 [connection signal="pressed" from="Start/VBoxContainer/Settings" to="Start" method="_on_settings_pressed"]
-[connection signal="pressed" from="Start/VBoxContainer/Quit" to="Start" method="_on_quit_pressed"]

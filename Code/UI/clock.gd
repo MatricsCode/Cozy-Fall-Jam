@@ -5,6 +5,8 @@ extends Control
 
 var time_left = 0
 
+var time_playing = 0
+
 func _ready():
 	GlobalScript.start.connect(_starting)
 	GlobalScript.stop.connect(_stoping)
@@ -12,7 +14,7 @@ func _ready():
 	GlobalScript.new_recipe.connect(_more_time)
 
 func _starting():
-	time_left = 60
+	time_left = 30
 	time_label.text = str("Time Left: ", time_left, " sec")
 	timer.start()
 func _stoping():
@@ -23,7 +25,7 @@ func _more_time():
 		return
 	
 	var multiplier = GlobalScript.recipes_finished.get(GlobalScript.recipes_finished.size()-1).size()
-	time_left += 5 * multiplier
+	time_left += 2.5 * multiplier
 	time_label.text = str("Time Left: ", time_left, " sec")
 	timer.stop()
 	timer.start()
@@ -31,6 +33,12 @@ func _more_time():
 func _on_timer_timeout():
 	timer.start()
 	time_left -= 1
+	
+	time_playing += 1
+	
+	0.005 * (time_playing / 10)
+	
+	GlobalScript.increase_mult.emit(0.005)
 	
 	time_label.text = str("Time Left: ", time_left, " sec")
 	

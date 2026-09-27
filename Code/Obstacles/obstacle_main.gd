@@ -40,6 +40,8 @@ func _obstacle():
 			pass
 		elif obstacle <= chances[i]:
 			_remove_obstacles(i)
+			if i > chances.size()-4:
+				_remove_siblings()
 			return
 
 func _remove_obstacles(keep : int):

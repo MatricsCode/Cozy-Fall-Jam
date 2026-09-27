@@ -2,7 +2,6 @@ extends Control
 
 @onready var start = $Main/Control/VBoxContainer2/Start
 @onready var settings = $Main/Control/VBoxContainer2/Settings
-@onready var quit = $Main/Control/VBoxContainer2/Quit
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,13 +16,9 @@ func _stoping_run():
 	visible = true
 	start._spawn_in()
 	settings._spawn_in()
-	quit._spawn_in()
 
 func _on_start_pressed():
 	GlobalScript._start_run()
 
 func _on_settings_pressed():
 	pass # Replace with function body.
-
-func _on_quit_pressed():
-	get_tree().quit()

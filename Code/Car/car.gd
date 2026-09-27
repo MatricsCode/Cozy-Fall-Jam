@@ -118,4 +118,6 @@ func _stop_driving():
 	
 	await mover.finished
 	
+	velocity = Vector2.ZERO
+	
 	moving = false

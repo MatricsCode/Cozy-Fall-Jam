@@ -1,12 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2toq2ab6un2n"]
+[gd_scene load_steps=8 format=3 uid="uid://c2toq2ab6un2n"]
 
 [ext_resource type="Script" uid="uid://b2hgu73umbhn8" path="res://Code/Main/main.gd" id="1_cmk6n"]
 [ext_resource type="PackedScene" uid="uid://2wbjquktqfgh" path="res://Scenes/Car/Car.tscn" id="1_p8rbg"]
 [ext_resource type="PackedScene" uid="uid://cuque3f4qhy2o" path="res://Scenes/UI/background.tscn" id="2_i3fi7"]
 [ext_resource type="PackedScene" uid="uid://dl6qhcx58bdfy" path="res://Scenes/UI/main.tscn" id="3_cmk6n"]
+[ext_resource type="Texture2D" uid="uid://b0boxyi4pkhgo" path="res://Art/Juice/Smoke3.png" id="5_o8wgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rbg"]
 size = Vector2(595, 3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w20t6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 200, 1)
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(-50, 0, 0)
+scale_max = 2.0
+color = Color(0.8117647, 0.45882353, 0.16862746, 1)
+hue_variation_min = -0.030000022
+hue_variation_max = -2.2351742e-08
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_cmk6n")
@@ -22,7 +35,7 @@ offset_bottom = -200.0
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Car" parent="." instance=ExtResource("1_p8rbg")]
-position = Vector2(0, -125)
+position = Vector2(-425, 0)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 
@@ -52,5 +65,14 @@ offset_left = -320.0
 offset_top = -240.0
 offset_right = -320.0
 offset_bottom = -240.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(344, -3)
+amount = 128
+texture = ExtResource("5_o8wgc")
+lifetime = 50.0
+preprocess = 10.0
+speed_scale = 1.2
+process_material = SubResource("ParticleProcessMaterial_w20t6")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_timer_timeout"]

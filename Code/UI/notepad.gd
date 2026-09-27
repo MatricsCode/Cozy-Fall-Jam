@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends TextureRect
 
 const BEETROOT_GHOST = preload("uid://dtjkc1mfn1kly")
 const CARROT_GHOST = preload("uid://ck2q54axw5ywh")
@@ -17,12 +17,12 @@ var text_rects : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	text_rects = [$HBoxContainer/TextureRect,
-		$HBoxContainer/TextureRect2,
-		$HBoxContainer/TextureRect3,
-		$HBoxContainer2/TextureRect,
-		$HBoxContainer2/TextureRect2,
-		$HBoxContainer2/TextureRect3,]
+	text_rects = [$Icons/HBoxContainer/TextureRect,
+		$Icons/HBoxContainer/TextureRect2,
+		$Icons/HBoxContainer/TextureRect3,
+		$Icons/HBoxContainer2/TextureRect,
+		$Icons/HBoxContainer2/TextureRect2,
+		$Icons/HBoxContainer2/TextureRect3,]
 	
 	GlobalScript.new_recipe.connect(_label)
 	
@@ -38,7 +38,7 @@ func _ready():
 func _label():
 	await _wipe()
 	
-	get_parent().visible = true
+	visible = true
 	
 	for i in GlobalScript.recipe.size():
 		match GlobalScript.recipe[i]:
@@ -59,7 +59,7 @@ func _wipe():
 	
 	#await get_tree().create_timer(0.2).timeout
 	
-	get_parent().visible = false
+	visible = false
 	
 	for i in text_rects:
 		i.texture = null
@@ -93,3 +93,33 @@ func _check(vegtable_type):
 		if i.texture == check_texture:
 			i.texture = new_texture
 			break
+
+
+func _on_mouse_entered():
+	var excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	await excited.finished
+	
+	excited.kill()
+	
+	excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1.1,1.1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+func _on_mouse_exited():
+	var excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(0.75,0.75), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	await excited.finished
+	
+	excited.kill()
+	
+	excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1,1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

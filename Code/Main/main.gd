@@ -28,6 +28,4 @@ func _spawn():
 	
 	var obstacles = OBSTACLE_LINE.instantiate()
 	obstacles.position = Vector2(340.0, 0)
-	if counter == 3:
-		obstacles.vegtable = true
 	add_child(obstacles)

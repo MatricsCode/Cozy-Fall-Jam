@@ -1,4 +1,5 @@
 extends Button
+class_name super_button
 
 var saftey_position : Vector2
 

@@ -7,6 +7,8 @@
 radius = 13.038404
 
 [node name="Bush1" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_nnkq5")
 metadata/_custom_type_script = "uid://cf71vlin1s48o"
 

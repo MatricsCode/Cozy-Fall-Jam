@@ -19,15 +19,17 @@ var recipes_finished = []
 var recipe = []
 var veg_still_required = []
 
-var difficulty_mod = 3
+var difficulty_mod = 6
 
 func _ready():
 	vegtable_collected.connect(_veg_collected)
 	start.connect(_soup_setting)
 	
-	GlobalScript.start.connect(_start_driving)
-	GlobalScript.stop.connect(_stop_driving)
-	GlobalScript.lost.connect(_stop_driving)
+	start.connect(_start_driving)
+	stop.connect(_stop_driving)
+	lost.connect(_stop_driving)
+	
+	increase_mult.connect(_increase_mult)
 
 func _start_run():
 	start.emit()
@@ -52,7 +54,7 @@ func _soup_setting():
 	recipe.clear()
 	veg_still_required.clear()
 	
-	var length = randi_range(1, difficulty_mod)
+	var length = randi_range(difficulty_mod/2, difficulty_mod)
 	while length > 0:
 		length -= 1
 		recipe.append(randi_range(1, 5))
@@ -83,4 +85,10 @@ func _stop_driving():
 	if current_multiplier > 0:
 		current_multiplier -= 0.01
 		await get_tree().create_timer(0.01).timeout
+		if current_multiplier < 0.1:
+			current_multiplier = 0
+		
 		_stop_driving()
+
+func _increase_mult(new_mult):
+	current_multiplier += new_mult

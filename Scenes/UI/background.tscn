@@ -6,8 +6,9 @@
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 3.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 43.0
 script = ExtResource("1_ycc34")
 
 [node name="TextureRect" type="TextureRect" parent="."]

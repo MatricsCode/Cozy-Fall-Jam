@@ -1,0 +1,250 @@
+[gd_scene load_steps=17 format=3 uid="uid://bwki80rl1c3b1"]
+
+[ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_23ib0"]
+[ext_resource type="Texture2D" uid="uid://dtjkc1mfn1kly" path="res://Art/Veggies/Indicators/Beetroot_ghost.png" id="2_8b7o0"]
+[ext_resource type="Texture2D" uid="uid://bv8wcd35unlgx" path="res://Art/Veggies/Indicators/Carrot.png" id="3_ua34x"]
+[ext_resource type="Texture2D" uid="uid://ddt1np16v7ftx" path="res://Art/Veggies/Indicators/Onion.png" id="4_abvdx"]
+[ext_resource type="Texture2D" uid="uid://blptbb5xkblaw" path="res://Art/Veggies/Indicators/Potato.png" id="5_ecist"]
+[ext_resource type="Texture2D" uid="uid://bggft0q1w7tmm" path="res://Art/Veggies/Indicators/Potato_ghost.png" id="6_ci4fw"]
+[ext_resource type="Texture2D" uid="uid://dubebsniedxk3" path="res://Art/Veggies/Indicators/Beetroot.png" id="7_4fdli"]
+[ext_resource type="Texture2D" uid="uid://bg3icl6fvbeei" path="res://Art/Veggies/Indicators/Turnip_ghost.png" id="8_7vuxk"]
+[ext_resource type="Texture2D" uid="uid://bt2m1qgyxumhj" path="res://Art/Obstacles/Boulder1.png" id="9_ci4fw"]
+[ext_resource type="Texture2D" uid="uid://cfqgel6jwcawg" path="res://Art/Obstacles/Bush2.png" id="10_4fdli"]
+[ext_resource type="Texture2D" uid="uid://h5308i8067x6" path="res://Art/Obstacles/Stump2.png" id="11_7vuxk"]
+[ext_resource type="Texture2D" uid="uid://dicmo3awoodji" path="res://Art/Obstacles/Bush1.png" id="12_ipxf7"]
+[ext_resource type="Texture2D" uid="uid://cyxqagp65jvn5" path="res://Art/Obstacles/Boulder2.png" id="13_4fdli"]
+[ext_resource type="Texture2D" uid="uid://sk48ohsply27" path="res://Art/UI/SmallStart2.png" id="14_ipxf7"]
+[ext_resource type="Script" uid="uid://c6oslk8cp5qy" path="res://Code/UI/Button/base_button.gd" id="15_xbq3g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipxf7"]
+bg_color = Color(0.40784314, 0.43529412, 0.4862745, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+corner_detail = 20
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 13.0
+offset_right = 370.0
+offset_bottom = -15.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ipxf7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 13.0
+offset_right = -14.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "You have been tasked with collecting   [shake][color=brown]root vegtables[/color][/shake]   for the local [wave][color=green]stew shop[/color][/wave]! 
+
+You can see the recipes in the [color=gray]top left corner![/color] 
+
+Try to complete as [color=green]many as possible[/color] before the [color=red][shake]time runs out![/shake][/color]
+
+Every time you complete a recipe, you get a [color=green]bit more time[/color]!
+[color=dark_gray][wave]At the end you can see all of the recipes you completed!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -142.0
+offset_right = 146.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_23ib0")
+
+[node name="Icons" type="VBoxContainer" parent="Panel/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/TextureRect/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/TextureRect/Icons/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8b7o0")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer/TextureRect/Icons/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_ua34x")
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/HBoxContainer/TextureRect/Icons/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_abvdx")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/TextureRect/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/TextureRect/Icons/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("5_ecist")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer/TextureRect/Icons/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("6_ci4fw")
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/HBoxContainer/TextureRect/Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_23ib0")
+
+[node name="Icons" type="VBoxContainer" parent="Panel/HBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/TextureRect2/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/TextureRect2/Icons/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_4fdli")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer/TextureRect2/Icons/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_4fdli")
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/HBoxContainer/TextureRect2/Icons/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8b7o0")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/HBoxContainer/TextureRect2/Icons"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/TextureRect2/Icons/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("8_7vuxk")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer/TextureRect2/Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Panel/HBoxContainer/TextureRect2/Icons/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -254.0
+offset_top = 13.0
+offset_right = -24.0
+offset_bottom = -140.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ipxf7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 13.0
+offset_right = -14.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "Beware of the [shake][color=red]obstacles![/color][/shake] 
+
+Don't [wave]hit[/wave] them or your shift will be cut short and you will [shake][color=red]have to restart!"
+
+[node name="GridContainer" type="GridContainer" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="Panel2/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_ci4fw")
+
+[node name="TextureRect2" type="TextureRect" parent="Panel2/GridContainer"]
+layout_mode = 2
+texture = ExtResource("10_4fdli")
+
+[node name="TextureRect3" type="TextureRect" parent="Panel2/GridContainer"]
+layout_mode = 2
+texture = ExtResource("11_7vuxk")
+
+[node name="TextureRect4" type="TextureRect" parent="Panel2/GridContainer"]
+layout_mode = 2
+texture = ExtResource("12_ipxf7")
+
+[node name="TextureRect5" type="TextureRect" parent="Panel2/GridContainer"]
+layout_mode = 2
+texture = ExtResource("13_4fdli")
+
+[node name="super_button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 348.0
+offset_right = 607.0
+offset_bottom = 476.0
+icon = ExtResource("14_ipxf7")
+flat = true
+script = ExtResource("15_xbq3g")
+metadata/_custom_type_script = "uid://c6oslk8cp5qy"
