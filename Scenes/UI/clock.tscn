@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddla4galxokjj"]
+[gd_scene load_steps=4 format=3 uid="uid://ddla4galxokjj"]
 
-[ext_resource type="Script" uid="uid://241hmfr4m72l" path="res://Code/UI/clock.gd" id="1_mifb0"]
+[ext_resource type="Script" uid="uid://dwwl088ce1uoq" path="res://Code/UI/clock2.0.gd" id="1_tdhdu"]
+[ext_resource type="Texture2D" uid="uid://pe61ro4ki4lx" path="res://Art/UI/Clock.png" id="2_tdhdu"]
+[ext_resource type="Texture2D" uid="uid://degtnuhs2cgf5" path="res://Art/UI/Handle.png" id="3_gqnqq"]
 
 [node name="Clock" type="Control"]
 layout_mode = 3
@@ -9,16 +11,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mifb0")
+script = ExtResource("1_tdhdu")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ClockBody" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("2_tdhdu")
+
+[node name="ClockHandle" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("3_gqnqq")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 640.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-
-[node name="Timer" type="Timer" parent="."]
+offset_left = 65.0
+offset_top = 21.0
+offset_right = 105.0
+offset_bottom = 44.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

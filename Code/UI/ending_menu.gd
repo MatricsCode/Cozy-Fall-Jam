@@ -15,7 +15,6 @@ func _starting_new_run():
 func _stoping_run():
 	visible = true
 	start._spawn_in()
-	settings._spawn_in()
 
 func _on_start_pressed():
 	GlobalScript._start_run()
