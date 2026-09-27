@@ -12,6 +12,7 @@ var saftey_position : Vector2
 
 func _on_timer_timeout():
 	time_left -= 1
+	time_label.text = str(time_left, " sec")
 	clock_handle.rotation_degrees += 45
 
 func _ready():
@@ -36,7 +37,7 @@ func _start():
 	await starter.finished
 	
 	time_left = 30
-	time_label.text = str("Time Left: ", time_left, " sec")
+	time_label.text = str(time_left, " sec")
 	timer.start()
 func _stop():
 	var stopper = get_tree().create_tween()
@@ -57,7 +58,7 @@ func _more_time():
 		return
 	
 	var multiplier = GlobalScript.recipes_finished.get(GlobalScript.recipes_finished.size()-1).size()
-	time_left += 3 * multiplier
-	time_label.text = str("Time Left: ", time_left, " sec")
+	time_left += 2 * multiplier
+	time_label.text = str(time_left, " sec")
 	timer.stop()
 	timer.start()
