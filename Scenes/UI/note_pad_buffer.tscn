@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl6ld6s1n3r6d"]
+
+[ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_dg4yt"]
+[ext_resource type="Script" uid="uid://7y31muaky2nl" path="res://Code/UI/note_pad_buffer.gd" id="2_guc17"]
+
+[node name="NotePad" type="TextureRect"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 153.0
+offset_bottom = 138.0
+texture = ExtResource("1_dg4yt")
+script = ExtResource("2_guc17")

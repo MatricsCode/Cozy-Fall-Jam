@@ -1,7 +1,7 @@
 extends Button
 class_name super_button
 
-var saftey_position : Vector2
+var saftey_position = null
 
 # Called when the node enters the scene tree for the first time.
 func _spawn_in():
@@ -9,13 +9,14 @@ func _spawn_in():
 	
 	pivot_offset = Vector2(size.x/2, size.y/2)
 	
-	await get_tree().create_timer(0.2).timeout
+	
+	await get_tree().create_timer(0.1).timeout
+	
+	saftey_position = position
 	
 	var rand_mult = randi_range(-1,1)
 	while rand_mult == 0:
 		rand_mult = randi_range(-1,1)
-	
-	saftey_position = position
 	
 	position.x += 100 * rand_mult
 	position.y += 50 * rand_mult
@@ -31,6 +32,8 @@ func _spawn_in():
 	spawn_in.tween_property(self, "self_modulate", Color.WHITE, 1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 
 func _on_mouse_entered():
+	if saftey_position == null:
+		return
 	var excited = get_tree().create_tween()
 	excited.set_parallel(true)
 	
@@ -47,6 +50,9 @@ func _on_mouse_entered():
 	excited.tween_property(self, "position", saftey_position, 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	excited.tween_property(self, "scale", Vector2(1.1,1.1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 func _on_mouse_exited():
+	if saftey_position == null:
+		return
+	
 	var excited = get_tree().create_tween()
 	excited.set_parallel(true)
 	

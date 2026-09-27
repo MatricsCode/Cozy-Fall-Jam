@@ -15,7 +15,6 @@ var moving = false
 func _ready():
 	GlobalScript.start.connect(_start_driving)
 	GlobalScript.stop.connect(_stop_driving)
-	GlobalScript.lost.connect(_stop_driving)
 
 func _physics_process(_delta):
 	input_direction = Input.get_vector("Left", "Right",  "Up", "Down")
@@ -102,6 +101,10 @@ func _on_hit_area_body_entered(body):
 
 func _start_driving():
 	sprite.play("forwards")
+	
+	$EngineSputter.emitting = false
+	$EngineSputter2.emitting = false
+	
 	var mover = get_tree().create_tween()
 	mover.tween_property(self, "position", Vector2(0, 0), 1.5)
 	
@@ -110,13 +113,22 @@ func _start_driving():
 	moving = true
 func _lose():
 	GlobalScript.lost.emit()
-	_stop_driving()
+	
+	sprite.play("destroyed")
+	
+	velocity = Vector2.ZERO
+	
+	moving = false
+	
+	$EngineSputter.emitting = true
+	$EngineSputter2.emitting = true
 func _stop_driving():
 	sprite.play("forwards")
 	var mover = get_tree().create_tween()
-	mover.tween_property(self, "position", Vector2(0, -125), 0.5)
+	mover.tween_property(self, "position", Vector2(425.0, 0), 0.5)
 	
-	await mover.finished
+	await get_tree().create_timer(0.6).timeout
+	position.x = -425.0
 	
 	velocity = Vector2.ZERO
 	

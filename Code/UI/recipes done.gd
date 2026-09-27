@@ -42,3 +42,32 @@ func _stop():
 	
 	visible = false
 	counter = -1
+
+func _on_mouse_entered():
+	var excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	await excited.finished
+	
+	excited.kill()
+	
+	excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1.1,1.1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+func _on_mouse_exited():
+	var excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(0.75,0.75), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	await excited.finished
+	
+	excited.kill()
+	
+	excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1,1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

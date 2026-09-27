@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dl6qhcx58bdfy"]
+[gd_scene load_steps=22 format=3 uid="uid://dl6qhcx58bdfy"]
 
 [ext_resource type="Texture2D" uid="uid://dah4dx22x51m2" path="res://Art/Veggies/Notebook.png" id="1_otj8o"]
 [ext_resource type="Script" uid="uid://bpya7qpafuoi4" path="res://Code/UI/notepad.gd" id="2_37xw0"]
 [ext_resource type="Texture2D" uid="uid://bp76eorkbs2w5" path="res://Art/Juice/Smoke1.png" id="3_40bib"]
+[ext_resource type="Texture2D" uid="uid://sk48ohsply27" path="res://Art/UI/SmallStart2.png" id="4_2q0ry"]
 [ext_resource type="Texture2D" uid="uid://ct5ll8xxmts4v" path="res://Art/Juice/Smoke2.png" id="4_o0om2"]
 [ext_resource type="Texture2D" uid="uid://b0boxyi4pkhgo" path="res://Art/Juice/Smoke3.png" id="5_tvx3w"]
 [ext_resource type="Script" uid="uid://ijial0rcmrcc" path="res://Code/UI/ending_menu.gd" id="6_ayamy"]
@@ -88,44 +89,39 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("6_ayamy")
 
-[node name="Main" type="VBoxContainer" parent="EndingUI"]
+[node name="Main" type="HBoxContainer" parent="EndingUI"]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -235.0
-offset_right = 235.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
 
 [node name="Control" type="Control" parent="EndingUI/Main"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="EndingUI/Main/Control"]
+[node name="Start" parent="EndingUI/Main/Control" instance=ExtResource("10_7dvw4")]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -185.5
-offset_right = 185.5
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -73.0
+offset_right = 0.0
+offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-alignment = 1
-
-[node name="Start" parent="EndingUI/Main/Control/VBoxContainer2" instance=ExtResource("10_7dvw4")]
-layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-icon = ExtResource("11_smf5i")
+icon = ExtResource("4_2q0ry")
 flat = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EndingUI/Main"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="EndingUI/Main/VBoxContainer"]
@@ -274,8 +270,10 @@ grow_vertical = 0
 theme_override_colors/font_color = Color(0.6392157, 0.654902, 0.7607843, 1)
 horizontal_alignment = 1
 
-[connection signal="pressed" from="EndingUI/Main/Control/VBoxContainer2/Start" to="EndingUI" method="_on_start_pressed"]
+[connection signal="pressed" from="EndingUI/Main/Control/Start" to="EndingUI" method="_on_start_pressed"]
 [connection signal="mouse_entered" from="NotePad" to="NotePad" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="NotePad" to="NotePad" method="_on_mouse_exited"]
 [connection signal="pressed" from="Start/VBoxContainer/Start" to="Start" method="_on_start_pressed"]
 [connection signal="pressed" from="Start/VBoxContainer/Settings" to="Start" method="_on_settings_pressed"]
+[connection signal="mouse_entered" from="TextureRect" to="TextureRect" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="TextureRect" method="_on_mouse_exited"]

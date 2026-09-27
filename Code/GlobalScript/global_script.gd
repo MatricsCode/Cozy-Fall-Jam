@@ -54,6 +54,7 @@ func _soup_setting():
 	recipe.clear()
 	veg_still_required.clear()
 	
+	@warning_ignore("integer_division")
 	var length = randi_range(difficulty_mod/2, difficulty_mod)
 	while length > 0:
 		length -= 1
@@ -63,6 +64,9 @@ func _soup_setting():
 
 func _physics_process(_delta):
 	var input = Input.get_axis("Left", "Right")
+	
+	if Input.is_action_just_pressed("Dev1"):
+		vegtable_collected.emit(veg_still_required[0])
 	
 	if input == 0:
 		current_direction = 3

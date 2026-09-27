@@ -23,8 +23,6 @@ func _summarise():
 	for i in GlobalScript.recipes_finished:
 		var notepad = ENDING_NOTE_PAD.instantiate()
 		
-		await get_tree().create_timer(time_inbetween*10).timeout
-		
 		notepad.wait_time = time_inbetween
 		
 		add_child(notepad)
@@ -35,6 +33,8 @@ func _summarise():
 			total_points += 1
 			await get_tree().create_timer(time_inbetween).timeout
 			points_label.text = str("Points Scored : ", total_points)
+		
+		await notepad.finished
 		
 		
 	GlobalScript.recipes_finished.clear()

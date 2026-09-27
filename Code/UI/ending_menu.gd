@@ -1,7 +1,6 @@
 extends Control
 
-@onready var start = $Main/Control/VBoxContainer2/Start
-@onready var settings = $Main/Control/VBoxContainer2/Settings
+@onready var start = $Main/Control/Start
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

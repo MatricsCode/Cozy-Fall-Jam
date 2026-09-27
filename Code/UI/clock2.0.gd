@@ -6,13 +6,18 @@ extends Control
 @onready var timer = $Timer
 
 var time_left = 0
-var time_playing = 0
+var time_playing = 0.0
 
 var saftey_position : Vector2
 
 func _on_timer_timeout():
+	GlobalScript.increase_mult.emit(time_left / 1000.0)
+	
+	time_playing += 1
 	time_left -= 1
 	time_label.text = str(time_left, " sec")
+	if time_left <= 0:
+		GlobalScript.stop.emit()
 	clock_handle.rotation_degrees += 45
 
 func _ready():
@@ -36,6 +41,8 @@ func _start():
 	
 	await starter.finished
 	
+	
+	time_playing = 0
 	time_left = 30
 	time_label.text = str(time_left, " sec")
 	timer.start()
@@ -61,4 +68,36 @@ func _more_time():
 	time_left += 2 * multiplier
 	time_label.text = str(time_left, " sec")
 	timer.stop()
+	for i in multiplier:
+		await get_tree().create_timer(0.1).timeout
+		clock_handle.rotation_degrees -= 45
 	timer.start()
+
+func _on_mouse_entered():
+	var excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1.2, 1.2), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	await excited.finished
+	
+	excited.kill()
+	
+	excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1.1,1.1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+func _on_mouse_exited():
+	var excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(0.75,0.75), 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	await excited.finished
+	
+	excited.kill()
+	
+	excited = get_tree().create_tween()
+	excited.set_parallel(true)
+	
+	excited.tween_property(self, "scale", Vector2(1,1), 0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

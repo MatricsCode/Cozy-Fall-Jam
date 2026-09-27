@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://2wbjquktqfgh"]
+[gd_scene load_steps=17 format=3 uid="uid://2wbjquktqfgh"]
 
 [ext_resource type="Script" uid="uid://djtleh5qvgkbx" path="res://Code/Car/car.gd" id="1_fnsqd"]
 [ext_resource type="Texture2D" uid="uid://3asoff1a0433" path="res://Art/Truck/Truck.png" id="2_6tdsx"]
+[ext_resource type="Texture2D" uid="uid://d1qgd76qmlwxo" path="res://Art/Truck/DestroyedTruck.png" id="2_a0hww"]
+[ext_resource type="Texture2D" uid="uid://ct5ll8xxmts4v" path="res://Art/Juice/Smoke2.png" id="4_sbu84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asnge"]
 atlas = ExtResource("2_6tdsx")
@@ -29,6 +31,14 @@ region = Rect2(144, 96, 144, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dfrl7"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_a0hww")
+}],
+"loop": true,
+"name": &"destroyed",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_asnge")
@@ -69,17 +79,35 @@ size = Vector2(104, 48)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnsqd"]
 size = Vector2(7, 48)
 
+[sub_resource type="Curve" id="Curve_dfrl7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.7078656, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_asnge"]
+curve = SubResource("Curve_dfrl7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kj2ht"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 13.889
+initial_velocity_max = 152.94
+gravity = Vector3(-100, 0, 0)
+damping_max = 40.0
+scale_curve = SubResource("CurveTexture_asnge")
+color = Color(0.49411765, 0.4745098, 0.50980395, 1)
+
 [node name="Car" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_layer = 5
-collision_mask = 5
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_fnsqd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dfrl7")
-animation = &"forwards"
+animation = &"destroyed"
 autoplay = "forwards"
-frame_progress = 0.61137474
 
 [node name="ForwardCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 0)
@@ -125,6 +153,16 @@ position = Vector2(49.000004, 27)
 rotation = 0.34906584
 scale = Vector2(0.99999994, 0.99999994)
 shape = SubResource("RectangleShape2D_fnsqd")
+
+[node name="EngineSputter" type="GPUParticles2D" parent="."]
+position = Vector2(48, 8)
+texture = ExtResource("4_sbu84")
+process_material = SubResource("ParticleProcessMaterial_kj2ht")
+
+[node name="EngineSputter2" type="GPUParticles2D" parent="."]
+position = Vector2(48, -17)
+texture = ExtResource("4_sbu84")
+process_material = SubResource("ParticleProcessMaterial_kj2ht")
 
 [connection signal="body_entered" from="ForwardHitArea" to="." method="_on_hit_area_body_entered"]
 [connection signal="body_entered" from="UpwardHitArea" to="." method="_on_hit_area_body_entered"]
